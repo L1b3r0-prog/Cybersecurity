@@ -9,7 +9,7 @@ Privacy
 •	Ability and/or right to protect personal info and extends to prevent invasions of personal space
 
 What is Security Posture
-Solidifying protection system for org security isn’t enough. **Detection and response** must be aligned to enhance overall security posture.
+Solidifying protection system for org security isn’t enough. > **Detection and response** must be aligned to enhance overall security posture.
 •	Enhancing detection systems to quickly identify attack
 •	Enhancing effectiveness of response process to reduce time between infection and containment
 Threat landscape
