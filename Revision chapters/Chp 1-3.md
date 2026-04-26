@@ -13,7 +13,7 @@ Degaussing is another way to reduce or eliminate unwanted magnetic field or data
 No standard way for SSD, suggested method is encryption
 
 Social Media
-Identity theft
+## Identity theft
 -	Easy to create fake account bearing identity of another person
 -	Picture and up to date details of victim
 -	Acc is used on org high level officials where hacker can request
@@ -21,7 +21,7 @@ Identity theft
   -	Sec info of network
 Hackers can guess pw or answers to secret qs through posts
  
-Social engineering
+## Social engineering
 Company can’t completely protect itself from this type of threat as its beyond the protection of sec tools
 6 levers of social engineering are: Reciprocation, Scarcity, Consistency, Liking, Authority and Validation
 Reciprocation
@@ -41,7 +41,7 @@ Authority
 Validation
 -	Readily comply and do something if other people are doing the same
 
-Social engineering attacks
+## Social engineering attacks
 Pretexting
 -	Construction of elaborate lie that is well-researched to appear legit to the target
 -	Attackers that uses pretexting have honed art of impersonating an imaginary boss/ trusted individuals in society such as police officers, debt collectors, etc
@@ -64,7 +64,7 @@ Tailgating
 -	Least common but significant success rate
 -	Attacker walks behind employee that has legit access and enters behind them by borrowing RFID card or gaining entry by using fake card under guise of accessibility problems
 
-Internal reconnaissance
+## Internal reconnaissance
 Tools used to determine security mechanisms in place that wards off hacking attempts
 Sniffing and Scanning Tools
 Prismdump
@@ -82,7 +82,7 @@ Nessus
 -	Scans network and shows connected devices that have misconfig and missing patches
 -	Tool shows devices that are using default pw, weak pw or no pw and recovers pw from devices by launching external tool to help with dict attacks against targets in network
 
-Compromising systems – current trends of attack
+## Compromising systems – current trends of attack
 Extortion, Data manipulation, Backdoors, IoT device, Mobile device, Hacking every device, Hacking cloud
 Extortion
 -	Holding pc files of ransom

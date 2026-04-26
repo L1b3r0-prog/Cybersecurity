@@ -1,0 +1,3 @@
+- -> is a bullet point
+  - -> two spaces and a dash is sub point
+## -> is a section heading
