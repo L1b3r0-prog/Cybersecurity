@@ -40,7 +40,7 @@ Priorities/Severity level: functional impact of incident in the business
 •	Recoverability
 Interaction with 3rd parties, partners and customers is needed to be defined
 
- 
+![NIST process Diagram](images/image2.png)
 
 Preparation
 •	Implementation of sec controls that were created based on initial risk assessment
