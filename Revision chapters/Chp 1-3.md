@@ -45,21 +45,27 @@ Validation
 Pretexting
 -	Construction of elaborate lie that is well-researched to appear legit to the target
 -	Attackers that uses pretexting have honed art of impersonating an imaginary boss/ trusted individuals in society such as police officers, debt collectors, etc
+
 Diversion theft
 -	Attackers persuade delivery and transport companies that deliveries and services are requested elsewhere
+
 Phishing
--	Vishing is done using phone calls instead of emails where attacker will use illegitimate interactive voice response system that sounds like banks, service providers. Target is prompted by system to give verification info. Normal for system to reject input given by target to ensure several PINs are disclosed
+-	Vishing is done using phone calls instead of emails where attacker will use illegitimate interactive voice response system that sounds like banks, service providers. 
+Target is prompted by system to give verification info. Normal for system to reject input given by target to ensure several PINs are disclosed
 -	Spear phishing is specifically targeted to obtain info from particular end users in org by performing number of background checks on targets
 -	Statistically, normal phishing is 3% while spear phishing is 70%
+
 Baiting
 -	Exploiting greed/curiosity of certain targets
 -	Attacker leaves malware-infected external storage device where it can be easily found
 -	Files would be left for victims to be tempted to open
 -	Attackers might install rootkit viruses that infects pc’s when booted while infected secondary storage media is then connected to them
 -	High success rate due to human nature to be greedy/curious
+
 Quid pro quo
 -	Commonly carried out by low-level attackers
 -	Attackers keeps calling random numbers claiming to be from tech sup and offer help, which gives attackers access to victim’s pc or ability to launch malware
+
 Tailgating
 -	Least common but significant success rate
 -	Attacker walks behind employee that has legit access and enters behind them by borrowing RFID card or gaining entry by using fake card under guise of accessibility problems
