@@ -1,7 +1,9 @@
 Chp 1-2
 --------------------------------------------------------------------------------------------------------------
-IR process is defined by detection and response
+## IR process is defined by detection and response
+
 Detection: how to handle security incidents
+
 Response: how to rapidly respond to them
  
 At point 7, IR process will
