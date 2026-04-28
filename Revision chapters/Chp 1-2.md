@@ -1,15 +1,14 @@
 Chp 1-2
 --------------------------------------------------------------------------------------------------------------
 ## IR process is defined by detection and response
-
 Detection: how to handle security incidents
 
 Response: how to rapidly respond to them
  
 At point 7, IR process will
-•	Take over incidence case
-•	Doc every single step of the process
-•	Incorporates the lessons learned with the aim of enhancing overall sec pos after incident is resolved
+-	Take over incidence case
+-	Doc every single step of the process
+-	Incorporates the lessons learned with the aim of enhancing overall sec pos after incident is resolved
 Process will vary by company, industry segment and standard
 Without IR process, there will be Bad security posture and waste of human resources
 
