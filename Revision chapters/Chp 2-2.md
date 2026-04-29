@@ -22,7 +22,7 @@ Uses raw IP packets in novel ways to determine:
 - Dozens of other characteristics
 
 Basic function of Nmap
-- Basic command: 'nmap <option> <target IPa>'
+- Basic command: `nmap <option> <target IPa>`
 
 <option>
 - TCP SYN scan (-sS)
@@ -46,5 +46,5 @@ Port specification
 
 Commands for script function would look like
 
-'nmap --script <script name> <target url or ip>'
+`nmap --script <script name> <target url or ip>`
 
