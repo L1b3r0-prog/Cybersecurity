@@ -2,3 +2,6 @@
   - -> two spaces and a dash is sub point
     - -> 4 spaces and a dash is a sub sub point
 ## -> is a section heading
+
+for images
+![IR Process Diagram](images/image1.png)
