@@ -150,3 +150,73 @@ Attacker should avoid alerts
 - Normal to disable security systems before escalating
 - Or use legit tools to perform the attack
 
+## Vertical escalation methods
+Using valid admin acc
+- Gains unauthorized access to admin and use to login to sensitive system or create own login creds
+- Exploit programming errors which may introduce vulns that attackers can bypass security mechanisms
+- Some systems will accept certain phrases as pw for all users
+
+Access token manipulation
+- Windows uses access tokens to determine owners
+- OS logs in admin as normal users but executes their processes with admin privileges
+  - If attacker can fool system with this, the processes will run without interferenece with full-level admin privileges
+- If attackers cleverly copy access tokens from existing processes that are started by admin users in a machine to new window process (using built-in Windows API functions), access token manipulation can occur
+
+Application shimmering
+- Its a windows application compatibility framework
+- Operation
+  - Creates a shim to buffer between legacy program and OS
+  - During execution of programs, shim cache is referenced to find out whether they will need to use the shim database
+  - Shim db will use API to ensure program's codes are redirected effectively
+  - Since shims are in direct communication with the OS, windows decides to add a safety feature where they are designed to run in user mode
+- Attackers creates custom shims that bypasses user account control, inject DLL into running processes and meddle with memory addresses
+- These shims enables attackers to run their own malicious programs with elevated privileges.
+  - Can also be used to turn off security sw (windows defender)
+
+Attacks using DLL
+- DLL (Dynamic-Link Library) is a shared library
+  - Allows devs to share code and data without requiring apps to be re-linked or re-joined
+  - In Apple based OS, Dylib is used instead
+- DLL injection
+  - Used to run malicious code using legit processes and services of Win OS
+  - This also mask's the attacker's action
+  - The aim is to modify the windows registry, create threads and do DLL loading which requires admin privileges
+
+Sequence
+- Attaching malicious code -> Access memory -> Copy malicious DLL to memory -> Execute with legitimate processes
+
+Reflective DLL injection
+- Loads the malicious code without having to make the usual Windows API calls
+- This bypasses DLL loading monitoring by sourcing its malicious code in the form of raw data
+- Hard to detect even on machines that are adequately protected by security sw
+
+Examples
+- Backdoor.Oldrea: injects itself in the explore.exe process
+- BlackEnergy: injects as DLL into the svchost.exe process
+- Duqu: injects itself in many processes to avoid detection
+
+DLL search order hijacking
+- Attackers try to replace legit DLL with malicious ones
+- Windows finds fake DLL first and loads it
+- Modifying manifest/local direction files to force load a diff DLL
+
+## Concluding the mission
+Exfiltration
+- Attacker starts extracting huge chunks of sensitive data from org
+- Includes trade secrets, usernames, passwords, personally identifiable data, top-secret docs and other types of data
+- Data is put on sale for any interested buyers
+- Files on the compromised system can be erased or modified
+
+Sustainment
+- Hackers may decide to remain silent after exfiltration
+- Malware is installed such as rootkit viruses to ensure access to victim's pc and systems
+- Security tools are ineffective at detecting or stopping the attack from proceeding at this point
+- Attacker normally has multiple access points to the victims such that even if one access point is closed, their access is not compromised
+
+Assault
+- Most feared stage as it permanently damages the data and sw, disabling or altering the functioning victim's hw
+- Egs. Stuxnet attack on Iranian nuclear facility
+  - First recorded digital weapon to be used to wreak havoc on physical resources
+  - Transmitted by USB thumb drive
+
+Obfuscation
