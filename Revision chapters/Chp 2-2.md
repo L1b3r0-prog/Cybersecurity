@@ -219,4 +219,21 @@ Assault
   - First recorded digital weapon to be used to wreak havoc on physical resources
   - Transmitted by USB thumb drive
 
-Obfuscation
+## Stuxnet and Flame
+Stuxnet attacks a target system in three phases
+- First by targeting windows pc and network by replicating itself repeatedly
+- Next, it seeks out Siemens Step7 software that is used to program industrial control systems that operate equipment
+- Finally, it compromises the programmable logic controllers
+
+### Stuxnet steps
+1. Infection
+2. Search
+3. Update
+4. Compromise
+5. Control
+6. Deceive and Destroy
+
+### Flame
+Precursor to Stuxnet and is a spohisticated worm
+- Data sent off in smaller chunks
+- Can exchange data with any bluetooth enabled device
