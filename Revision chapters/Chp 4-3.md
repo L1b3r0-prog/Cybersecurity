@@ -51,7 +51,7 @@ Attackers often:
 # Indicator of Compromise (IoC)
 
 ## Definition
-An **Indicator of Compromise (IoC)** is evidence or an artifact showing that a system or network may have been breached.
+An Indicator of Compromise (IoC) is an artifact that is observed on a network or in an OS that indicates a computer intrusion with high confidence
 
 Examples:
 - Malicious IP addresses
