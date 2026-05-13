@@ -6,11 +6,11 @@
 
 A layered security strategy that ensures multiple layers of protection exist, each with its own security controls. Sensors in each layer alert administrators to suspicious activity. 
 
-The purpose is to **break the attack kill chain** before an attack is fully executed.
+The purpose is to break the attack kill chain before an attack is fully executed.
 
 ### Three Sections of Implementation
 
-**Infrastructure and Services**
+Infrastructure and Services
 - Attackers can target an organisation's infrastructure and services
 - All services must be enumerated to identify possible attack vectors:
   - Identify which assets the organisation has
