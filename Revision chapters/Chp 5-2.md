@@ -1,56 +1,36 @@
-# CSIT302 Cybersecurity – Threat Intelligence & Investigating an Incident
-
----
-
-## 1. Intelligence – Data vs Information vs Intelligence
+## Data vs Information vs Intelligence
 
 These three terms are often incorrectly used interchangeably.
 
-- **Data** – Simple facts available in large volumes. In cybersecurity, examples include IP addresses or logs. Raw data alone is of limited utility.
-- **Information** – Produced when data is collated to provide a useful output. Example: a series of logs showing a spike in suspicious activity.
-- **Intelligence** – Comes from the processing and analysis of information, used to inform decision-making. Example: collated log data contextualised with prior incident reports, allowing a mitigation strategy to be developed.
+- Data – Simple facts available in large volumes. In cybersecurity, examples include IP addresses or logs. Raw data alone is of limited utility.
+- Information – Produced when data is collated to provide a useful output. Example: a series of logs showing a spike in suspicious activity.
+- Intelligence – Comes from the processing and analysis of information, used to inform decision-making. Example: collated log data contextualised with prior incident reports, allowing a mitigation strategy to be developed.
 
-The pipeline is: **Collection → Processing → Analysis → Intelligence**
+The pipeline is: Collection → Processing → Analysis → Intelligence
 
 ---
 
-## 2. Introduction to Threat Intelligence
-
-**Key definitions:**
-- CIA: Intelligence is knowledge and foreknowledge of the world — the prelude to decision and action.
-- NCA (UK): Intelligence is information collected to answer specific questions on who, what, where, when, how, and why.
-- NIST SP 800-150: Threat intelligence is threat information that has been aggregated, transformed, analysed, interpreted, or enriched to provide the necessary context for decision-making.
-
-**Intelligence Collection Disciplines:** OSINT, HUMINT, SIGINT, GEOINT, IMINT
-
-In cybersecurity, threat intelligence specifically refers to **Cyber Threat Intelligence (CTI)**.
+## Introduction to Threat Intelligence
+In cybersecurity, threat intelligence specifically refers to Cyber Threat Intelligence (CTI).
 
 ### Why CTI Matters
 - Brings more meaningful results from collected data, revealing actions not detectable by traditional sensors
-- Enables a **proactive** approach against both known and unknown threats
-- Key principle: **The targeted attacks need the targeted defense!**
-- Ensures organisations can **prevent, detect, and respond** to realistic, contemporary attacks
-
-### Intelligence-Led Testing Frameworks
-The Bank of England's **CBEST** was the first intelligence-led cyber security testing framework. It ensures security testers and threat intelligence providers work together, replicating real attacks from sophisticated adversaries. Expanded frameworks include:
-
-- **TIBER-NL** – Dutch financial sector
-- **TBEST** – UK telecoms sector
-- **TIBER-EU** – European financial sector
-- **iCAST** – Hong Kong's financial sector
-- **GBEST** – UK government departments
-- **ATTEST** – UK aviation industry
+- Enables a proactive approach against both known and unknown threats
+- Key principle: The targeted attacks need the targeted defense!
+- Ensures organisations can prevent, detect, and respond to realistic, contemporary attacks
 
 ---
 
-## 3. Areas Where Cyber Threat Intelligence Can Be Used
+## Areas Where Cyber Threat Intelligence Can Be Used
 
 ### Profiling Motivations
-Detection can be improved by learning more about adversaries. The three main attacker motivations are:
+Detection can be improved by learning more about adversaries. 
 
-- **Cybercrime** – Primary motivation is financial gain.
-- **Hacktivism** – Broader motivation; ranges from political expression to support for a particular cause.
-- **Cyber espionage / State-sponsored** – Growing number of cases as part of larger state-sponsored campaigns.
+The three main attacker motivations are:
+
+- Cybercrime – Primary motivation is financial gain.
+- Hacktivism – Broader motivation; ranges from political expression to support for a particular cause.
+- Cyber espionage / State-sponsored – Growing number of cases as part of larger state-sponsored campaigns.
 
 > Key question to ask: **Which type of attacker is most likely to target our organisation?**
 
@@ -69,25 +49,25 @@ Assessing an organisation's ability to determine future cyber threats.
 
 ---
 
-## 4. Levels of Cyber Threat Intelligence
+## Levels of Cyber Threat Intelligence
 
 Each level differs in the nature and format of the material conveyed, its intended audience, and its application.
 
 | Level | Focus | Audience | Format |
 |---|---|---|---|
-| **Strategic** | High-level, changing risk landscape | Senior decision makers | Plain language, business risk focus, less frequent |
-| **Tactical** | TTPs (Tactics, Techniques, Procedures) + IOCs | Network defenders (NOCs) | Combination of machine-readable (IOCs) and human-readable (TTPs) |
-| **Operational** | Specific impending attacks | Network defenders | Large volume, machine and human readable, real-time |
-| **Technical** | Indicators of specific malware | Technical analysts | Low-level, machine-readable |
+| Strategic | High-level, changing risk landscape | Senior decision makers | Plain language, business risk focus, less frequent |
+| Tactical | TTPs (Tactics, Techniques, Procedures) + IOCs | Network defenders (NOCs) | Combination of machine-readable (IOCs) and human-readable (TTPs) |
+| Operational | Specific impending attacks | Network defenders | Large volume, machine and human readable, real-time |
+| Technical | Indicators of specific malware | Technical analysts | Low-level, machine-readable |
 
 ### Operational Threat Intelligence
-- Collects data and information to respond to a threat **as it is in progress**
+- Collects data and information to respond to a threat as it is in progress
 - Provides real-time alerts to help security teams understand attack scope
 - Relates to details of potential impending operations against an organisation
 - Example: chatter from cyber activists discussing targets, or data leaked on dark web forums
 
 ### Tactical Threat Intelligence
-- Covers TTPs used by threat actors; **IOCs (Indicators of Compromise)** are the main deliverable
+- Covers TTPs used by threat actors; IOCs (Indicators of Compromise)** are the main deliverable
 - Useful for updating signature-based defence systems and for proactive measures like threat hunting
 - Particularly valuable for Network Operations Centers (NOCs)
 - IOCs supplied in machine-readable formats; TTPs in human-readable formats requiring human action
@@ -97,10 +77,10 @@ Each level differs in the nature and format of the material conveyed, its intend
 
 ---
 
-## 5. Microsoft Threat Intelligence (Example)
+## Microsoft Threat Intelligence (Example)
 
 Microsoft consumes threat intelligence through:
-- **Microsoft Threat Intelligence Center**, aggregating data from:
+- Microsoft Threat Intelligence Center, aggregating data from:
   - Honeypots, malicious IP addresses, botnets, and malware detonation feeds
   - Third-party sources (threat intelligence feeds)
   - Human-based observation and intelligence collection
@@ -109,7 +89,7 @@ Microsoft consumes threat intelligence through:
 
 ---
 
-## 6. Open Source Tools for Threat Intelligence (Tactical)
+## Open Source Tools for Threat Intelligence (Tactical)
 
 - **Quick IP validation:** https://fraudguard.io/
   - Returns geolocation, threat type, risk level, and discovery date for a given IP
@@ -120,7 +100,7 @@ Microsoft consumes threat intelligence through:
 
 ---
 
-## 7. Leveraging Threat Intelligence to Investigate Suspicious Activity
+## Leveraging Threat Intelligence to Investigate Suspicious Activity
 
 ### The Challenge of Alert Volume
 - An average large organisation processes ~17,000 malware alerts per week (Microsoft *Lean on the Machine* report)
@@ -131,22 +111,22 @@ Microsoft consumes threat intelligence through:
 - The Blue Team (focused on defence) collaborates with the incident response team by providing the right data to find the **root cause** of an issue
 
 ### Alert Triage
-Alert triage is the process of **determining the most important threat that must be alerted**. Failing or delaying this leads to a domino effect — if triage fails, the operation fails. Alert triage typically occurs at the **Network Operations Center (NOC)**.
+Alert triage is the process of determining the most important threat that must be alerted. Failing or delaying this leads to a domino effect — if triage fails, the operation fails. Alert triage typically occurs at the Network Operations Center (NOC).
 
 ### Key Questions at the End of a Threat Intelligence Investigation
 - Which systems were compromised?
 - Where did the attack start?
 - Which user account was used to start the attack?
-- Did it move **laterally**? If so, which systems were involved?
-- Did it **escalate privilege**? If so, which privileged account was compromised?
-- Did it try to communicate with **command and control (C2)**? If successful:
+- Did it move laterally? If so, which systems were involved?
+- Did it escalate privilege? If so, which privileged account was compromised?
+- Did it try to communicate with command and control (C2)? If successful:
   - Did it download anything from C2?
   - Did it send anything to C2?
-- Did it try to **clear evidence**? Was it successful?
+- Did it try to clear evidence? Was it successful?
 
 ---
 
-## 8. Investigating an Incident
+## Investigating an Incident
 
 ### Scoping the Issue
 **Scoping** is the process of determining whether a given incident is security-related. Not every incident is security-related — it is vital to scope before beginning a full investigation, as symptoms may initially appear security-related but turn out to be non-security issues.
@@ -159,7 +139,7 @@ Alert triage is the process of **determining the most important threat that must
 
 ---
 
-## 9. Key Artifacts
+## Key Artifacts
 
 More data does not mean a better investigation. Data collection should focus on **vital and relevant artifacts** from the target system. Too much data can distract from the root cause.
 
@@ -196,7 +176,7 @@ For **live investigations**, traffic captures and process dumps can also be coll
 
 ---
 
-## 10. Case Study: On-Premises Compromised System
+## Case Study: On-Premises Compromised System
 
 ### Attack Vector: Phishing Email
 1. Victim received a phishing email with an embedded image containing a hyperlink
@@ -221,7 +201,7 @@ For **live investigations**, traffic captures and process dumps can also be coll
 
 ---
 
-## 11. Case Study: Compromised System in a Hybrid Cloud
+## Case Study: Compromised System in a Hybrid Cloud
 
 ### Setup
 - Compromised system is on-premises; company uses a cloud-based monitoring system (Azure Security Center)
@@ -250,7 +230,7 @@ In real-world scenarios, sensor and monitoring data is overwhelming. The platfor
 
 ---
 
-## 12. Lessons Learned
+## Lessons Learned
 
 After every incident closes:
 - **Document** each step taken during the investigation

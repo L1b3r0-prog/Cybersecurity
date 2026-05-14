@@ -4,4 +4,8 @@
 ## -> is a section heading
 
 for images
-![IR Process Diagram](images/image1.png)
+![ Diagram](images/image1.png)
+
+
+use three dashes for line across page
+---
