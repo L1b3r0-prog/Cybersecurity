@@ -129,31 +129,30 @@ Alert triage is the process of determining the most important threat that must b
 ## Investigating an Incident
 
 ### Scoping the Issue
-**Scoping** is the process of determining whether a given incident is security-related. Not every incident is security-related — it is vital to scope before beginning a full investigation, as symptoms may initially appear security-related but turn out to be non-security issues.
+Scoping is the process of determining whether a given incident is security-related. Not every incident is security-related — it is vital to scope before beginning a full investigation, as symptoms may initially appear security-related but turn out to be non-security issues.
 
-**Scoping guidelines:**
+Scoping guidelines:
 - Example: users reporting slow systems → conduct basic performance troubleshooting first, not a full security investigation
-- Determine the **frequency** of the issue during scoping
+- Determine the frequency of the issue during scoping
 - If the issue is not currently occurring, configure the environment to collect data when reproducible
-- **Document all steps** and provide an accurate action plan
+- Document all steps and provide an accurate action plan
 
 ---
 
 ## Key Artifacts
 
-More data does not mean a better investigation. Data collection should focus on **vital and relevant artifacts** from the target system. Too much data can distract from the root cause.
+More data does not mean a better investigation. Data collection should focus on vital and relevant artifacts from the target system. Too much data can distract from the root cause.
 
 ### Key Artifacts in a Windows System
-Stored in the **registry key**, retrievable via PowerShell (e.g., `Get-ItemProperty`):
+Stored in the registry key, retrievable via PowerShell (e.g., `Get-ItemProperty`):
 - Location (time zone) of the machine
 - Networks the machine visited
 - USB usage history
 - Malicious software configured to start at Windows startup
 
-For **live investigations**, traffic captures and process dumps can also be collected.
+For live investigations, traffic captures and process dumps can also be collected.
 
 ### Security Events That Can Be Captured
-**Process/System events:**
 - Audit log was cleared
 - Logon success or failure
 - A registry value was modified
@@ -161,17 +160,17 @@ For **live investigations**, traffic captures and process dumps can also be coll
 - A new process was created — malware/ransomware often spawn `cmd.exe` processes
 - A scheduled task was enabled or updated
 
-**User account events:**
+User account events:
 - Account enabled, created, or locked out
 - Password reset
 - Denied remote access
 
-**Policy events:**
+Policy events:
 - Log policy changed
 - Domain policy changed
 - Changes in security-enabled global or local group
 
-**Firewall events:**
+Firewall events:
 - A change was made to the Windows Firewall exception list
 
 ---

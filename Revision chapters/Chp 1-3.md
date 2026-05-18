@@ -1,144 +1,142 @@
 Chp 1-3
---------------------------------------------------------------------------------------------------------------
+══════════════════════════════════════════════════════
+
 ## External Reconnaissance
 
-What is Dumpster Diving
+---
 
-Organizations dispose of obsolete devices in a number of ways, such as through bidding, sending to recyclers, or dumping them in storage. There are serious implications for these methods of disposal.
+### Dumpster Diving
+Organizations dispose of obsolete devices via bidding, recyclers or dumping in storage.
 
-By taking old external storage devices or obsolete computers which are not thoroughly handled, attackers may get the information like 
--	The internal setup of an organization 
--	Openly-stored passwords on browsers 
--	The privileges and details of different users 
--	Access to some bespoke systems used in the network
+**Info attackers can obtain from improperly disposed devices:**
+- Internal setup of the organization
+- Openly-stored passwords on browsers
+- Privileges and details of different users
+- Access to bespoke systems used in the network
 
-Google puts old hard drives into a crusher to render them unreadable
+**Disposal methods:**
+| Method | Notes |
+|--------|-------|
+| Crusher | Google's method — renders hard drives physically unreadable |
+| Degaussing | Reduces/eliminates magnetic field/data on hard drives — does NOT work on SSDs |
+| Encryption | Suggested method for SSDs — no standard method exists |
 
-Degaussing is another way to reduce or eliminate unwanted magnetic field or data stored on hard drives but doesn’t work on SSD
+---
 
-No standard way for SSD, suggested method is encryption
+### Social Media — Identity Theft
+- Easy to create fake accounts bearing another person's identity
+- Uses victim's picture and up-to-date details
+- Account impersonates high-level org officials to request:
+  - Network info and stats from IT department
+  - Security info of the network
+- Hackers can guess passwords or answers to secret questions through social media posts
 
-## Social Media
+---
 
-## Identity theft
--	Easy to create fake account bearing identity of another person
--	Picture and up to date details of victim
--	Acc is used on org high level officials where hacker can request
-  -	Network info and stats from IT dpt
-  -	Sec info of network
+### Social Engineering
+> ⚠️ Company can't completely protect itself — beyond the protection of security tools
 
-Hackers can guess pw or answers to secret qs through posts
- 
-## Social engineering
-Company can’t completely protect itself from this type of threat as its beyond the protection of sec tools
+#### 6 Levers of Social Engineering
 
-## 6 levers of social engineering are: Reciprocation, Scarcity, Consistency, Liking, Authority and Validation
-Reciprocation
--	Victim does something for social media user who in turn feels need to reciprocate favour
--	Human nature to feel obligated to return favour
+| Lever | Description | Example |
+|-------|-------------|---------|
+| Reciprocation | Victim feels obligated to return a favour | Attacker does something nice, victim reciprocates |
+| Scarcity | Threatens short supply of something target needs | Fake mega sale, limited trip package |
+| Consistency | Humans honour promises and stick to usual flow | Attacker clones known IT vendor, delivers malware-infected electronics |
+| Liking | More likely to comply with people they like | Attacker appears attractive or friendly |
+| Authority | Most obedient to those ranked above them | Victim gives login credentials or sensitive data over unsecured channels |
+| Validation | Comply if others are doing the same | Social proof manipulation |
 
-Scarcity
--	Threatening short supply of something that target is in need of such as trip package, mega sale or new release of products
+---
 
-Consistency
--	Humans tend to honour promises to get used to usual flow of events
--	Eg. Attacker clone known vendor of IT team and deliver malware infected electronics
+### Social Engineering Attacks
 
-Liking
--	More likely to comply with request of people they like or appear attractive
+#### Pretexting
+- Construction of an elaborate, well-researched lie to appear legitimate
+- Impersonates imaginary boss or trusted individuals (police officers, debt collectors, etc.)
 
-Authority
--	Commonly used lever with high success rate
--	More obedient to authority of those ranked above them even if malicious
--	Eg. Giving login credentials or send sensitive data over unsecured channels
+#### Diversion Theft
+- Persuades delivery/transport companies that deliveries are requested elsewhere
 
-Validation
--	Readily comply and do something if other people are doing the same
+#### Phishing
+- **Vishing:** done via phone calls using illegitimate interactive voice response systems
+  - Sounds like banks or service providers
+  - System rejects input to ensure multiple PINs are disclosed
+- **Spear Phishing:** specifically targeted at particular end users
+  - Performs background checks on targets
+  - Success rate: Normal phishing **3%** vs Spear phishing **70%**
 
-## Social engineering attacks
-Pretexting
--	Construction of elaborate lie that is well-researched to appear legit to the target
--	Attackers that uses pretexting have honed art of impersonating an imaginary boss/ trusted individuals in society such as police officers, debt collectors, etc
+#### Baiting
+- Exploits greed/curiosity of targets
+- Attacker leaves malware-infected external storage where it can be easily found
+- May install rootkit viruses that activate when infected media is connected
+- High success rate due to human nature
 
-Diversion theft
--	Attackers persuade delivery and transport companies that deliveries and services are requested elsewhere
+#### Quid Pro Quo
+- Commonly carried out by low-level attackers
+- Attacker calls random numbers claiming to be tech support
+- Offers help → gains access to victim's PC or launches malware
 
-Phishing
--	Vishing is done using phone calls instead of emails where attacker will use illegitimate interactive voice response system that sounds like banks, service providers. 
-Target is prompted by system to give verification info. Normal for system to reject input given by target to ensure several PINs are disclosed
--	Spear phishing is specifically targeted to obtain info from particular end users in org by performing number of background checks on targets
--	Statistically, normal phishing is 3% while spear phishing is 70%
+#### Tailgating
+- Least common but significant success rate
+- Attacker walks behind employee with legitimate access
+- Enters by borrowing RFID card or using fake card under guise of accessibility problems
 
-Baiting
--	Exploiting greed/curiosity of certain targets
--	Attacker leaves malware-infected external storage device where it can be easily found
--	Files would be left for victims to be tempted to open
--	Attackers might install rootkit viruses that infects pc’s when booted while infected secondary storage media is then connected to them
--	High success rate due to human nature to be greedy/curious
+---
 
-Quid pro quo
--	Commonly carried out by low-level attackers
--	Attackers keeps calling random numbers claiming to be from tech sup and offer help, which gives attackers access to victim’s pc or ability to launch malware
+## Internal Reconnaissance
+Tools used to determine security mechanisms in place
 
-Tailgating
--	Least common but significant success rate
--	Attacker walks behind employee that has legit access and enters behind them by borrowing RFID card or gaining entry by using fake card under guise of accessibility problems
+### Sniffing and Scanning Tools
 
-## Internal reconnaissance
-Tools used to determine security mechanisms in place that wards off hacking attempts
+| Tool | Description |
+|------|-------------|
+| Prismdump | Linux only — sniffs with Prism2 chipset card, captures packets to pcap format |
+| Tcpdump | Most powerful packet-filtering capabilities, selectively captures packets |
+| Wireshark | Most popular sniffing tool — user-friendly interface, powerful packet interpretation |
+| Nmap | Maps out hosts in network to discover valuable targets — slower scans bypass monitoring |
+| Nessus | Best vuln scanner for white hats — detects misconfigs, missing patches, weak/default passwords |
 
-Sniffing and Scanning Tools
+---
 
-Prismdump
--	Only for linux which allows hackers to sniff with Prism2 chipset based card
--	Only captures packets and stores to pcap format
+## Compromising Systems — Current Trends of Attack
 
-Tcpdump
--	Most powerful packet-filtering capabilities and can selectively capture packets
+### Extortion
+- Holding PC files for ransom
+- Threatening to release damaging info about victim
+- Examples: ransomware, threatening to hack sites
 
-Wireshark
--	Most popular sniffing tools with user-friendly interface and powerful packet interpretation
+### Data Manipulation
+- Compromises systems by manipulating data instead of deleting/releasing it
+- Difficult to detect
+- Single value change can have far-reaching consequences
+- Targets: healthcare, financial and government data
+- Can be used to spread misinformation to the masses
 
-Nmap
--	Attackers will try to map out hosts in network to discover ones containing valuable info
--	Slower scanning tools are used to get past network monitoring systems
+### Backdoors
+- Hidden access points planted in firmware
+- Can allow hackers to decrypt traffic flowing through firewalls
 
-Nessus
--	Best network scanners and vuln scanner for white hats
--	Scans network and shows connected devices that have misconfig and missing patches
--	Tool shows devices that are using default pw, weak pw or no pw and recovers pw from devices by launching external tool to help with dict attacks against targets in network
+### IoT Device Attacks
+- Exploits smart devices with weak security
+- Manufacturers don't prioritize security
+- Most users leave devices with default security config
 
-## Compromising systems – current trends of attack
-Extortion, Data manipulation, Backdoors, IoT device, Mobile device, Hacking every device, Hacking cloud
+### Mobile Device Attacks
+- Mobile malware sends messages to generate revenue for hackers
+- Steals personal info from victim's devices
+- Browsers and web-supported apps vulnerable to:
+  - Scripting attacks
+  - Man-in-the-Middle (MitM) attacks
 
-Extortion
--	Holding pc files of ransom
--	Threatening to release damaging info about victim to public
--	Ransomware and threatening to hack sites are examples
+### Hacking Every Device
+- Overlooked devices targeted (e.g. printers) to:
+  - Extract password authentication mechanisms
+  - Access sensitive data sent to be printed
+  - Use as entry points into secured networks
 
-Data manipulation
--	Compromise systems through manipulation of data instead of deleting or releasing it. Difficult to detect
--	Hacker changes single value but consequences can be far-reaching
--	Can happen on health care, financial and gov data
--   Can be used to provide misinfo to the masses
-
-Backdoors
--	Hidden access points planted in firmware
--	Can allow hackers to decrypt traffic flowing through the firewalls
-
-IoT device
--	Exploiting smart devices with weak security
--	Manufacturers don’t prioritize security of the devices and most users leave it with default security config
-
-Mobile
--	Mobile malware sends msgs on victim’s phones to gen revenues for hackers and steal personal info from victim’s devices
--	Browsers and web-supported apps are vuln to scripting attacks and exploitable through mitm attacks
-
-Hacking every device
--	Overlooked devices are attacked such as printers to extract password authentication mechanisms, sensitive data users send to be printed and used as entry points into secured networks
-
-Cloud
--	Cloud vuln: stores everything; storage space, cpu cores and network interfaces
--	Security is left to cloud vendor such as the security environment
--	Security control of the individual company is limited with the use of the shared platform with other people
--	Cloud is not the direct target as the hacker compromises a user or system within the org
+### Hacking the Cloud
+- Cloud stores everything: storage space, CPU cores, network interfaces
+- Security left to cloud vendor
+- Individual company's security control is limited on shared platforms
+- Cloud is not the direct target — hacker compromises a user/system within the org
