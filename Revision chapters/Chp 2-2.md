@@ -1,239 +1,270 @@
-## Lateral movement
-Attackers moving from device to device after initial intrusion in hopes of accessing high-valued data
-- Also looks for ways to gain additional control of victim's netowrk
-- Tries to not trigger alarms or raise any alerts
+Chp 2-2
+══════════════════════════════════════════════════════
 
-Attacks are carried out within org network, systems and premises
-- Can take a long time, up to several months before hackers reach desired target device
-- Involves scanning network for other resources, collecting and exploiting credentials or the collection of more info for exfiltration
+## Lateral Movement
+Attackers move from device to device after initial intrusion to access high-value data
 
-## Sniffing tools
-Free and open source utility for network discovery and security auditing
+- Looks for ways to gain additional control of victim's network
+- Tries not to trigger alarms or raise alerts
+- Carried out within org network, systems and premises
+- Can take up to **several months** before reaching desired target
+- Involves: scanning for resources, collecting/exploiting credentials, gathering info for exfiltration
 
-Wireshark, Tcpdump, Nmap and nessus are used
+---
 
-Nmap
+## Sniffing Tools
 
-Uses raw IP packets in novel ways to determine:
+| Tool | Description |
+|------|-------------|
+| Wireshark | Most popular — captures and interprets packets |
+| Tcpdump | Powerful packet-filtering, selective capture |
+| Nmap | Network mapping and host discovery |
+| Nessus | Vulnerability scanner |
+
+---
+
+## Nmap (Network Mapper)
+Uses raw IP packets to determine network information
+
+**Basic command:** `nmap <option> <target IP>`
+
+### What Nmap Can Determine
 - Hosts available on network
 - Services (application name and version) hosts are offering
-- OS (and versions) they are running
-- Type of packet filters/firewalls are used
-- Dozens of other characteristics
+- OS and versions running
+- Type of packet filters/firewalls in use
 
-Basic function of Nmap
-- Basic command: `nmap <option> <target IPa>`
+### Scan Types
+| Option | Scan Type |
+|--------|-----------|
+| `-sS` | TCP SYN scan |
+| `-sU` | UDP scan |
 
-<option>
-- TCP SYN scan (-sS)
-- UDP scan (-sU)
-- Scanning outputs will be open, closed, filtered, unfiltered or a combination
+**Scan outputs:** open, closed, filtered, unfiltered or combination
 
-Timing options (-T)
-- Paranoid (0)
-- Sneaky (1)
-- Polite (2)
-- Normal (3)
-- Aggressive (4)
-- Insane (5)
+### Timing Options (-T)
+| Level | Name |
+|-------|------|
+| 0 | Paranoid |
+| 1 | Sneaky |
+| 2 | Polite |
+| 3 | Normal |
+| 4 | Aggressive |
+| 5 | Insane |
 
-Port specification
-- Default is most common 1000 ports in random order
-- Scans only defined ports (-p port range)
-- Only 100 most common (-F)
-- Don't randomize port numbers (-r)
-- Scans most common N ports (--top-ports N)
+### Port Specification
+| Option | Description |
+|--------|-------------|
+| Default | Most common 1000 ports in random order |
+| `-p <range>` | Scans only defined ports |
+| `-F` | Only 100 most common ports |
+| `-r` | Don't randomize port numbers |
+| `--top-ports N` | Scans most common N ports |
 
-Commands for script function would look like
-
+### Nmap Script Categories
 `nmap --script <script name> <target url or ip>`
 
-Auth: Used to test whether can bypass authentication mechanism
+| Script | Purpose |
+|--------|---------|
+| auth | Test if authentication mechanism can be bypassed |
+| broadcast | Find other hosts and add to scanning queue |
+| brute | Brute force password guessing |
+| discovery | Discover more about the network |
+| dos | Test if target is vulnerable to DoS |
+| exploit | Actively exploit a vulnerability |
+| fuzzer | Test server response to unexpected/random packet fields |
+| intrusive | More intense scans — higher risk of detection |
+| malware | Test target for presence of malware |
+| safe | General scan — less likely to alarm admins |
+| vuln | Find vulnerabilities on target |
 
-Broadcast: Used to find other hosts on the network and automatically add them to scanning queue
-
-Brute: Used for brute password guessing
-
-Discovery: Used to discover more about the network
-
-Dos: Used to test whether a target is vuln to DoS
-
-Exploit: Used to actively exploit a vuln
-
-Fuzzer: Used to test how server responds to unexpected or randomized fields in packets and determine other potential vulns
-
-Intrusive: Used to perform more intense scans that poses a much higher risk of being detected by admins
-
-Malware: Used to test target for presence of malware
-
-Safe: Used to perform general network security scan that's less likely to alarm remote admins
-
-Vuln: Used to find vulnerabilities on the target
-
+---
 
 ## NIDS vs HIDS
-Network Intrusion Detection System (NIDSs)
-- Shields their systems to prevent internal recon.
-- Has limited capability when hackers are scanning individual targets
 
-Host-based intrusion detection system
-- Can prevent scan from happening
-- Most network admins won't consider HIDS in a network especially if the number of hosts is huge
+| Feature | NIDS | HIDS |
+|---------|------|------|
+| Scope | Network-wide | Individual host |
+| Capability | Limited when scanning individual targets | Can prevent scans from happening |
+| Consideration | Default choice for most admins | Often overlooked if number of hosts is large |
 
-Once network admins detect there is a threat on the network, through sweep will be conducted and thwart progress made by attacker
+> ⚠️ Legitimate tools can be used for lateral movement — security systems ignore them,
+> allowing hackers to move around in highly secured networks
 
-Security tools can identify signatures of hacking tools and malwares
-
-Legit tools can be used for lateral movement
-- Security systems ignore them due to being legit
-- Allows hackers to move around in highly secured networks
+---
 
 ## Sysinternals
-It is a suite of tools that allows admins to control windows-based pc from remote terminal
+Suite of tools allowing admins to control Windows-based PCs from a remote terminal
 
-Attackers uses it to upload, execute and interact with executables on remote hosts.
+**Attacker use:**
+- Upload, execute and interact with executables on remote hosts
 - Can be automated using scripts
 
-Doesn't give alerts to users on remote system during operation
-- Classified as legit system admin tools and are ignored by antivirus programs
-- Can be used to reveal info about running processes and kill or stop services
+**Why it's dangerous:**
+- Does NOT give alerts to users on remote system during operation
+- Classified as legitimate system admin tools → ignored by antivirus
+- Can reveal info about running processes, kill or stop services
 
-## Active directory
-![AD Diagram](images/image4.png)
+---
 
-It is the richest source of info for the devices connected to a domain network
-- Key target of an attack
+## Active Directory (AD)
+Richest source of info for devices connected to a domain network — **key attack target**
 
-AD stores names of useres alongside their roles in an org in the network and allows admins to change pw and privileges for them
+- Stores names of users alongside their roles in the org
+- Allows admins to change passwords and privileges
 
-## Privilege escalation
-Act of exploiting bug, design flaw or config oversight in OS or sw app to gain elevated access to resources that are normally protected from app or user
-- Attackers exploit these privileges to achieve
-  - Mass deletion
-  - Corruption
-  - Theft of data
-  - Disabling of pc
-  - Destroying hw
-  - etc
+---
 
-## Horizontal
-Attacker uses normal acc to access account of other users
-- Through sw bugs: user is able to view and access files of other users due to error in the coding of a system
-- Through admin acc: attacker can go on with the attack by creating other admin level users
+## Privilege Escalation
+Exploiting a bug, design flaw or config oversight in OS/software to gain elevated access
+to resources normally protected from app or user
 
-Horizontal attacks are normally facilitated by tools and techniques that steal login creds at the phase where hackers compromise a system
+**Goals of privilege escalation:**
+- Mass deletion
+- Data corruption
+- Theft of data
+- Disabling PCs
+- Destroying hardware
 
-Attacker uses same privileges gained from initial access
+---
 
-Normally done through session and cookie theft, cross-site scripting, guessing weak pw and logging keystrokes
+## Horizontal Privilege Escalation
+Attacker uses normal account to access accounts of other users at the **same privilege level**
 
-Result
-- Attacker has well-established remote access entry points into target system
-- Might have access to accounts of several users
-- Knows how to avoid detection from security tools that target might have
+### Two Main Ways
+| Method | Description |
+|--------|-------------|
+| Software bugs | User can view/access other users' files due to coding error |
+| Admin account | Attacker creates additional admin-level users |
 
-## Vertical privilege escalation
-Occurs when user/process is able to obtain higher level of access than admin or sys dev intended
+**Common techniques:**
+- Session and cookie theft
+- Cross-site scripting
+- Guessing weak passwords
+- Logging keystrokes
 
-More diff but more rewarding since attacker can acquire system rights on compromised system
+**Result:**
+- Well-established remote access entry points
+- Access to multiple user accounts
+- Knows how to avoid detection
 
-Higher change of staying and performing actions on network system while remaining undetected
-- With super user access rights, attacker can perform actions that admin can't stop or interfere with
+---
 
-Differs from system to system
-- Windows: buffer overflows are commonly used
-- Mac: done via jailbreaking
-- Web-based tools: exploitation of backend code
+## Vertical Privilege Escalation
+User/process obtains higher access than admin or developer intended
 
-Attacker should avoid alerts
-- Otherswise, effort is for nothing
-- Normal to disable security systems before escalating
-- Or use legit tools to perform the attack
+- More difficult but more rewarding
+- Attacker acquires system/super-user rights
+- Higher chance of remaining undetected with super user rights
 
-## Vertical escalation methods
-Using valid admin acc
-- Gains unauthorized access to admin and use to login to sensitive system or create own login creds
-- Exploit programming errors which may introduce vulns that attackers can bypass security mechanisms
-- Some systems will accept certain phrases as pw for all users
+### Platform Differences
+| Platform | Common Method |
+|----------|--------------|
+| Windows | Buffer overflows |
+| Mac | Jailbreaking |
+| Web-based | Exploitation of backend code |
 
-Access token manipulation
-- Windows uses access tokens to determine owners
-- OS logs in admin as normal users but executes their processes with admin privileges
-  - If attacker can fool system with this, the processes will run without interferenece with full-level admin privileges
-- If attackers cleverly copy access tokens from existing processes that are started by admin users in a machine to new window process (using built-in Windows API functions), access token manipulation can occur
+> ⚠️ Attacker should avoid triggering alerts — normal to disable security systems
+> before escalating, or use legitimate tools
 
-Application shimmering
-- Its a windows application compatibility framework
-- Operation
+### Vertical Escalation Methods
+
+#### Valid Admin Account
+- Gains unauthorized access to admin account
+- Logs into sensitive systems or creates own credentials
+- Exploits programming errors to bypass security mechanisms
+- Some systems accept certain phrases as universal passwords
+
+#### Access Token Manipulation
+- Windows uses access tokens to determine process owners
+- OS logs admin as normal user but executes processes with admin privileges
+- Attacker copies access tokens from admin-started processes to new processes
+  using built-in Windows API functions
+- Result: processes run with full admin privileges undetected
+
+#### Application Shimming
+- Windows Application Compatibility Framework
+- **Normal operation:**
   - Creates a shim to buffer between legacy program and OS
-  - During execution of programs, shim cache is referenced to find out whether they will need to use the shim database
-  - Shim db will use API to ensure program's codes are redirected effectively
-  - Since shims are in direct communication with the OS, windows decides to add a safety feature where they are designed to run in user mode
-- Attackers creates custom shims that bypasses user account control, inject DLL into running processes and meddle with memory addresses
-- These shims enables attackers to run their own malicious programs with elevated privileges.
-  - Can also be used to turn off security sw (windows defender)
+  - Shim cache checked during program execution
+  - Shim DB uses API to redirect program code
+  - Shims run in user mode for safety
+- **Attacker use:**
+  - Creates custom shims that bypass UAC
+  - Injects DLL into running processes
+  - Meddles with memory addresses
+  - Runs malicious programs with elevated privileges
+  - Can disable security software (e.g. Windows Defender)
 
-Attacks using DLL
-- DLL (Dynamic-Link Library) is a shared library
-  - Allows devs to share code and data without requiring apps to be re-linked or re-joined
-  - In Apple based OS, Dylib is used instead
-- DLL injection
-  - Used to run malicious code using legit processes and services of Win OS
-  - This also mask's the attacker's action
-  - The aim is to modify the windows registry, create threads and do DLL loading which requires admin privileges
+#### DLL Attacks
+**DLL (Dynamic-Link Library):** shared library allowing devs to share code/data
+without re-linking apps. Apple equivalent: **Dylib**
 
-Sequence
-- Attaching malicious code -> Access memory -> Copy malicious DLL to memory -> Execute with legitimate processes
+| Attack Type | Description |
+|-------------|-------------|
+| DLL Injection | Runs malicious code using legitimate Windows processes/services to mask attacker's actions |
+| Reflective DLL Injection | Loads malicious code without Windows API calls — bypasses monitoring, hard to detect |
+| DLL Search Order Hijacking | Replaces legitimate DLL with malicious one — Windows loads fake DLL first |
 
-Reflective DLL injection
-- Loads the malicious code without having to make the usual Windows API calls
-- This bypasses DLL loading monitoring by sourcing its malicious code in the form of raw data
-- Hard to detect even on machines that are adequately protected by security sw
+**DLL Injection sequence:**
+Attach malicious code → Access memory → Copy malicious DLL to memory → Execute with legitimate processes
 
-Examples
-- Backdoor.Oldrea: injects itself in the explore.exe process
-- BlackEnergy: injects as DLL into the svchost.exe process
-- Duqu: injects itself in many processes to avoid detection
+**Real-world examples:**
+| Malware | Injection Target |
+|---------|----------------|
+| Backdoor.Oldrea | explorer.exe |
+| BlackEnergy | svchost.exe |
+| Duqu | Multiple processes to avoid detection |
 
-DLL search order hijacking
-- Attackers try to replace legit DLL with malicious ones
-- Windows finds fake DLL first and loads it
-- Modifying manifest/local direction files to force load a diff DLL
+---
 
-## Concluding the mission
-Exfiltration
-- Attacker starts extracting huge chunks of sensitive data from org
-- Includes trade secrets, usernames, passwords, personally identifiable data, top-secret docs and other types of data
-- Data is put on sale for any interested buyers
-- Files on the compromised system can be erased or modified
+## Concluding the Mission
 
-Sustainment
-- Hackers may decide to remain silent after exfiltration
-- Malware is installed such as rootkit viruses to ensure access to victim's pc and systems
-- Security tools are ineffective at detecting or stopping the attack from proceeding at this point
-- Attacker normally has multiple access points to the victims such that even if one access point is closed, their access is not compromised
+### Exfiltration
+- Extracts huge chunks of sensitive data
+- Includes: trade secrets, usernames, passwords, PII, top-secret docs
+- Data put on sale for interested buyers
+- Files on compromised systems can be erased or modified
 
-Assault
-- Most feared stage as it permanently damages the data and sw, disabling or altering the functioning victim's hw
-- Egs. Stuxnet attack on Iranian nuclear facility
-  - First recorded digital weapon to be used to wreak havoc on physical resources
-  - Transmitted by USB thumb drive
+### Sustainment
+- Attacker remains silent after exfiltration
+- Rootkit malware installed to maintain access
+- Security tools ineffective at this point
+- Multiple access points maintained — closing one doesn't stop attacker
+
+### Assault
+- Most feared stage — permanently damages data and software
+- Disables or alters victim's hardware
+- Example: **Stuxnet** attack on Iranian nuclear facility
+  - First recorded digital weapon used to damage physical resources
+  - Transmitted via USB thumb drive
+
+### Obfuscation
+- Attacker covers tracks to confuse/divert forensic investigation
+- Attacks outdated servers in small orgs then moves laterally to other targets
+- Uses public/free WiFi (less protected, harder to trace)
+- **Dynamic code obfuscation:** prevents detection by signature-based AV and firewalls
+
+---
 
 ## Stuxnet and Flame
-Stuxnet attacks a target system in three phases
-- First by targeting windows pc and network by replicating itself repeatedly
-- Next, it seeks out Siemens Step7 software that is used to program industrial control systems that operate equipment
-- Finally, it compromises the programmable logic controllers
 
-### Stuxnet steps
-1. Infection
-2. Search
-3. Update
-4. Compromise
-5. Control
-6. Deceive and Destroy
+### Stuxnet — 3 Attack Phases
+1. Targets Windows PCs and network by replicating itself repeatedly
+2. Seeks out **Siemens Step7 software** used to program industrial control systems
+3. Compromises the **Programmable Logic Controllers (PLCs)**
+
+### Stuxnet Steps
+| Step | Action |
+|------|--------|
+| 1 | Infection |
+| 2 | Search |
+| 3 | Update |
+| 4 | Compromise |
+| 5 | Control |
+| 6 | Deceive and Destroy |
 
 ### Flame
-Precursor to Stuxnet and is a spohisticated worm
+- Precursor to Stuxnet — sophisticated worm
 - Data sent off in smaller chunks
-- Can exchange data with any bluetooth enabled device
+- Can exchange data with any **Bluetooth-enabled device**

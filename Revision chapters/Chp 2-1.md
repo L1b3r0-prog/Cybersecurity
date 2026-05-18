@@ -1,159 +1,191 @@
-## Steps for compromising a system
+Chp 2-1
+══════════════════════════════════════════════════════
+
+## Steps for Compromising a System
 1. Deploying payload
 2. Compromise OS
 3. Compromise web-based system
 
-Steps will vary according to attacker's mission
+> Steps will vary according to attacker's mission
 
-## Deploying payloads
-Metasploit
-- Hive of exploits and payloads used against different vulnerabilities that hacker has already identified using tools like Nessus Scanner
-- Framework console can be booted up by running msfconsole in terminal.
-  - Paylod is setup using command with IPa of target
-- Payload is generated using msfvenom command
-  - Creates backdoor payload such as window command shell or reverse TCP stagger
-  - Backdoors can be distributed via phsihing emails
+---
 
+## Deploying Payloads
 
-Exploiting vulns
-- Can be errors in the authentication code
+### Metasploit
+- Collection of exploits and payloads used against identified vulnerabilities
+- Vulnerabilities identified beforehand using tools like Nessus Scanner
+- Framework console booted by running `msfconsole` in terminal
+- Payload set up using command with IP address of target
+- Payload generated using `msfvenom` command
+  - Creates backdoor payloads such as Windows command shell or reverse TCP stager
+  - Backdoors can be distributed via phishing emails
+
+### Exploiting Vulnerabilities
+- Errors in authentication code
 - Bugs within account management system
-- Unforseen errors by devs
+- Unforeseen errors by developers
 
-## Zero day
-It uses advanced vuln discovery tools and techniques to identify vulns not yet know by sw devs
+---
 
-Done via fuzzing and source code analysis
+## Zero-Day Vulnerabilities
+Uses advanced vuln discovery tools to identify vulns not yet known by software developers
 
-Fuzzing
-- Automated testing technique for sw involving providing invalid, unexpected or random data as inputs to pc program
-- Refers to system created by hacker to attempt to find vuln
-- Often inefficient when dealing with large programs
+### Discovery Methods
 
-Source code analysis
-- Simpler and quicker
-- Lower success rate as not easy to pinpoint errors from merely looking at code
-- Uses automated tools such as Checkmarx
-  - Scans code and quickly identifies, categorize and suggest countermeasures for vulns in code
+| Method | Description | Notes |
+|--------|-------------|-------|
+| Fuzzing | Automated testing using invalid/unexpected/random inputs | Often inefficient for large programs |
+| Source Code Analysis | Manual/automated review of code | Simpler but lower success rate |
+| Reverse Engineering | Generates assembly language source from machine-executable code | — |
 
-Reverse engineering
-- Generates assembly language source code from machine-executable code
+**Fuzzing:**
+- Refers to a system created by hacker to attempt to find vulns
+- Tools: automated software testing frameworks
 
-## Zero day Exploits
-Buffer overflow
-- Caused by use of incorrect logic in system codes which writes data to buffer memory but not to observe memory restrictions of buffer
-- Writing data past limit will crash the system
+**Source Code Analysis:**
+- Uses automated tools such as **Checkmarx**
+  - Scans code, identifies, categorizes and suggests countermeasures for vulns
 
-Structured exception handler overwrites
-- Structures Exception Handling (SEH)
-- Hackers attacks SEH logic causing it to correct non-existent errors and lead system to shutdown
-- Sometimes used with buffer overflows
+---
 
-## Compromising OS
-Hackers are insider threats
-- People working inside orgs that have malicious intent
-- Have advantage of being exposed to inside of org and know where to attack
-- Are physically close to target and target machine when user is not attended
-  - Third party tolls such as Kon-Boot, Hiren's BootCD or Ophcrack
-  - Linux live cd
-  - Preinstalled applications
+## Zero-Day Exploits
 
-Compromising with Live CD
-- Enables hacker to access all files contained in win pc directly
-- Boots target pc from DVD/thumb drive containing image of linux
-- Unless hard disk is encrypted, all user files will be visible in plain text to be copied
+### Buffer Overflow
+- Caused by incorrect logic that writes data to buffer memory without observing memory restrictions
+- Writing data past the limit will crash the system
+- Commonly used for **vertical privilege escalation**
 
-Compromising with preinstalled apps
-- Aim is to compromise windows programs
-- By modifying commonly used apps so that when user runs it, malicious actions is performed instead
+### Structured Exception Handler (SEH) Overwrite
+- Hackers attack SEH logic causing it to correct non-existent errors
+- Leads system to shutdown
+- Sometimes used in combination with buffer overflows
 
-## Compromising web-based systems
-Contains highly valuable and sensitive data and ways to compromise are
-- SQL injection
-- Cross-site scripting
-- Broken authentication
-- DDoS attacks
+---
 
-SQL injection
-- Targets execution of input provided by users on backend for websites coded in PHP and SQL
-- Hackers supply inputs that manipulates execution of SQL statement, causing compromise to occur at backend and exposing underlying DB
+## Compromising the OS
 
-XSS
-- Exploits input fiels of website if not sanitized.
-- Used to steal cookies and sessions as well as display alert boxes
-- Stored XSS is a variant where hacker stores a malicious XSS script in the HTML of page/DB and is executed when user loads affected page
+### Insider Threats
+- People working inside orgs with malicious intent
+- Have advantage of knowing the inside of the org and where to attack
+- Physically close to target machine when user is unattended
 
-Broken auth
-- Allows attackers to capture or bypass authentication methods used by web app
-- Common attack in publicly shared pc
-- Websites establish sessions and stores cookies but don't delete when user closes browser without logging out
+**Tools used for physical access attacks:**
+| Tool | Purpose |
+|------|---------|
+| Kon-Boot | Bypasses Windows login |
+| Hiren's BootCD | Multi-purpose boot toolkit |
+| Ophcrack | Password cracker using rainbow tables |
+| Linux Live CD | Boots directly into Linux to access files |
 
-DDoS attacks
-- Main aim is to bring down a server or to create diversion to commit another malicious act such as stealing data
+### Compromising with Live CD
+- Boots target PC from DVD/USB containing Linux image
+- Enables direct access to all files on Windows PC
+- Unless hard disk is encrypted, all user files visible in plain text
 
-## Chasing user's identity
-Identity is the new perimeter
-- Trad network perimeter is not sufficient for security boundary of orgs
-- Majority of new creds is only username and pw
-- MFA is not default method for authentication
+### Compromising with Preinstalled Apps
+- Aims to compromise Windows programs
+- Modifies commonly used apps so when user runs them, malicious actions are performed instead
 
-Growing trends of credential theft
-- Hackers infiltrate without making noise using valid creds to authenticate network
-- Targets user's bank cred using banking trojans
+---
 
-BYOD
-- User identity for personal app resides in the same device that has corporate creds in use to access corporate-related data
-- Might use same pw for different tasks
+## Compromising Web-Based Systems
+Contains highly valuable and sensitive data
+
+### Attack Methods
+
+#### SQL Injection
+- Targets backend execution of user inputs on PHP/SQL websites
+- Attacker supplies inputs that manipulate SQL statement execution
+- Exposes and compromises the underlying database
+
+#### Cross-Site Scripting (XSS)
+- Exploits unsanitized input fields
+- Used to steal cookies, sessions and display alert boxes
+- **Stored XSS:** hacker stores malicious script in HTML/DB, executed when user loads page
+
+#### Broken Authentication
+- Captures or bypasses authentication methods
+- Common on publicly shared PCs
+- Websites store session cookies but don't delete them when user closes browser without logging out
+
+#### DDoS Attacks
+- Main aim: bring down a server
+- Or create a diversion to commit another malicious act (e.g. stealing data)
+
+---
+
+## Chasing a User's Identity
+
+### Identity is the New Perimeter
+- Traditional network perimeter is no longer sufficient as security boundary
+- Majority of credentials are just username and password
+- MFA is not the default authentication method
+
+### Growing Trends of Credential Theft
+- Hackers infiltrate silently using valid credentials to authenticate to the network
+- Target user's banking credentials using banking trojans
+
+### BYOD Risk
+- Personal app identity resides on the same device as corporate credentials
+- Users may reuse the same password for different tasks
+
+---
 
 ## Hash Function
-A hash function is a mathematical algorithm that takes any input data (called a message) and converts it into a fixed-size output called a hash value, digest, or message digest.
+A mathematical algorithm that takes any input data (message) and converts it into a
+fixed-size output called a **hash value / digest / message digest**
 
-Key properties
-- Easy to compute
-- Hard to invert
-- Collision-resillience
+### Key Properties
+| Property | Description |
+|----------|-------------|
+| Easy to compute | Fast to generate hash from input |
+| Hard to invert | Cannot reverse hash back to original input |
+| Collision-resilience | Two different inputs should not produce the same hash |
 
-Used for
+### Uses
 - Storing passwords
-- Integrity
+- Data integrity verification
 - Efficiency
 - Proof of work
 
-## Strats for compromising user's identity
-Attack plan should consider current threat landscape which includes three stages
-1. Who can attack us
-2. What are the most common attacks launched by adversaries
-3. How the attacks are executed
+---
 
-Stage 1
-- Red team performs self-assessment and understand what type of info company has and who benefits from obtaining it
-- Might not be able to map all adversaries but red team can create basic adversary profile for next stage
+## Strategies for Compromising a User's Identity
+Attack plan considers current threat landscape across 3 stages:
 
-Stage 2
-- Many hacker groups have a pettern
-- Understanding the category of the attack and how they are created, during the attack exercise, it can be emulated
+### Stage 1 — Who Can Attack Us
+- Red team performs self-assessment
+- Understands what type of info the company has and who benefits from obtaining it
+- Creates a basic adversary profile for Stage 2
 
-Stage 3
-- Red team is trying to be accurate with reality
+### Stage 2 — What Are the Most Common Attacks
+- Many hacker groups have a pattern
+- Understanding attack categories allows the red team to emulate them during exercises
+
+### Stage 3 — How the Attacks Are Executed
 - Red team emulates hacker's mindset
-  - Attacker won't stop if fail to infiltrate on the first attempt
-  - Would attack again using different techniques until successful
+- Attacker won't stop after first failed attempt
+- Will retry using different techniques until successful
+
+---
 
 ## Harvesting Credentials
-Using identified unpatched vulns
-- Such as CVE-2017-8563
-- Allows elevation of privilege vulns due to kerberos' authentication failure
-- Attackers potentially gains access to local admin acc through lateral movement
 
-Using pass-the-hash attack
-- Uses hashed pw directly instead of cracking it
+### Using Unpatched Vulnerabilities
+- Example: **CVE-2017-8563**
+  - Elevation of privilege vuln due to Kerberos authentication failure
+  - Attacker potentially gains local admin access through lateral movement
 
-Tools used  
-  - Mimikatz is a tool that dumps hashes and clears text credentials straight from memory
-  - Sysinternals is a suite to remotely access windows and execute commands
+### Pass-the-Hash Attack
+- Uses hashed password directly instead of cracking it
+- Tools:
+  - **Mimikatz** — dumps hashes and plaintext credentials from memory
+  - **Sysinternals** — remotely accesses Windows and executes commands
 
-Brute force
-- Attacker tries many passwords or passphrases with the hope of eventually guessing correctly
+### Brute Force
+- Attacker tries many passwords/passphrases hoping to eventually guess correctly
 
-Social engineering
-- Uses social engineering toolkit in kali linux to craft and distribute malware via email
+### Social Engineering
+- Uses Social Engineering Toolkit in Kali Linux
+- Crafts and distributes malware via email
