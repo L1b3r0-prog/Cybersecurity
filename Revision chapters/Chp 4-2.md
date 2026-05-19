@@ -3,7 +3,7 @@
 # What is the Purpose of Differential Privacy?
 
 ## Main Purpose
-Differential Privacy (DP) is designed to allow useful analysis of datasets while protecting the privacy of individuals inside the dataset.
+Enable useful analysis of sensitive data for reasearch, policy and market analysis while ensuring an adversary can't determine whether any single individual data influenced the output
 
 ---
 
@@ -21,6 +21,30 @@ The challenge is:
 
 ---
 
+## Why Simpler Approaches Fail
+
+**Approach 1 — Encryption:**
+Blocks access entirely, but data must be decrypted before analysis can happen, 
+which reintroduces privacy risks at the point of use.
+
+**Approach 2 — Anonymization:**
+Removing names and identifiers is not enough. Quasi-identifiers like ZIP code, 
+birth date, and sex can be cross-referenced with public datasets to re-identify 
+individuals.
+
+- **Sweeney (1997):** Linked anonymized medical records with public voter rolls 
+using ZIP, birth date and sex — successfully re-identifying individuals.
+- **Netflix Prize (2006):** Anonymized movie ratings were matched against public 
+IMDb reviews, deanonymizing users and leading to cancellation of the second 
+Netflix prize.
+
+**Approach 3 — Mediated Access:**
+A curator filters queries on behalf of analysts. Still insufficient because exact 
+aggregate answers, returned repeatedly, can leak individual information through 
+careful query construction — which leads directly to what DP solves.
+
+---
+
 ## Goals of Differential Privacy
 DP aims to:
 - Protect individual privacy
@@ -30,100 +54,23 @@ DP aims to:
 
 ---
 
-# Problems with Traditional Privacy Approaches
-
-# 1. Encrypting the Data
-
-## Idea
-Encrypt the dataset so unauthorized users cannot access it.
-
-## Problem
-- Data still needs to be decrypted for analysis
-- Once decrypted, privacy risks return
-- Does not protect against insider misuse
+## Main idea of designing Differential Privacy schemes
+The core principle is to add carefully calibrated random noise to the output so that the presence of absence of any single record can't be detected
 
 ---
 
-# 2. Anonymizing the Data
+## How it works
+Instead of returning the exact answer to a query, small amount of random noise is added to the result
 
-## Idea
-Remove identifiers such as:
-- Name
-- Address
-- ID numbers
+Random enough to hide any single data contributed to the answer, but small enough that the result is still statistically useful
 
----
-
-## Problem: Re-identification Attacks
-
-Even anonymized datasets can sometimes be linked with public information to identify individuals.
+Amount of noise is calibrated based on sensitivity of the query
 
 ---
 
-## Example: Latanya Sweeney Attack (1997)
+## Consequences of returning answer wihout noise
+Adversary can issue series of slightly different queries and compare the results.
 
-### Scenario
-Anonymous medical records were linked with:
-- Public voter records
-- Birth dates
-- ZIP codes
-- Gender information
+They can query the dataset and if the answers are different, they can infer the data
 
-### Result
-Individuals were successfully re-identified.
-
----
-
-## Example: Netflix Prize Dataset
-
-Netflix released anonymized movie rating data.
-
-Researchers matched:
-- Netflix ratings
-- IMDb public reviews
-
-### Result
-Users were deanonymized.
-
----
-
-# Main Idea of Designing Differential Privacy Schemes
-
-## Core Idea
-The effect of any single person's data should be hidden.
-
----
-
-## Important Principle
-
-An attacker should NOT be able to determine:
-- Whether a person's data exists in the dataset
-- Whether a specific individual's record changed the output
-
----
-
-## Ideal Privacy Goal
-
-The analysis result should remain almost the same:
-- Whether a user is included
-- Or replaced by another random person
-
----
-
-# How Differential Privacy Works
-
-# Key Technique: Add Random Noise
-
-Instead of returning the exact answer to a query, DP adds carefully calibrated random noise.
-
----
-
-# For Each Query: Return Answer with Noise
-
-## Normal Query
-```text
-“How many users have diabetes?”
-
-Instead of just 5000, it will return with 5003 or 4997
-
-This noise hides individual contribution, makes re-identification harder and perserves overall statistical usefulness
+Overly accurate estimates across many queries is "non-private" due to cumulative effect of exact answers letting an attacker reconstruct what individual records contain
