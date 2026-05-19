@@ -89,7 +89,7 @@ Uses raw IP packets to determine network information
 | Consideration | Default choice for most admins | Often overlooked if number of hosts is large |
 
 > ⚠️ Legitimate tools can be used for lateral movement — security systems ignore them,
-> allowing hackers to move around in highly secured networks
+> allowing hackers to move around in highly secured networks (powershell)
 
 ---
 
