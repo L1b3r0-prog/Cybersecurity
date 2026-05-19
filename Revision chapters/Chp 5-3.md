@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Disaster Recovery Plan (DRP)
+## Disaster Recovery Plan (DRP)
 
 ### Definition
 A documented set of processes and procedures carried out to recover the IT infrastructure in the event of a disaster. Since disasters cannot be fully avoided, the goal is to plan ahead for recovery.
@@ -46,7 +46,7 @@ Protect the continuity of business operations when IT operations have been parti
 
 ---
 
-## 2. Recovery Objectives
+## Recovery Objectives
 
 | Metric | Definition |
 |--------|------------|
@@ -65,7 +65,7 @@ Lower RTO (faster recovery) = higher cost and complexity. AWS disaster recovery 
 
 ---
 
-## 3. Live Recovery
+## Live Recovery
 
 ### Why It's Needed
 Traditional recovery requires taking the system offline — but some systems cannot tolerate downtime (e.g., always-on services, structurally interdependent systems).
@@ -83,7 +83,7 @@ Traditional recovery requires taking the system offline — but some systems can
 
 ---
 
-## 4. Contingency Plan
+## Contingency Plan
 
 ### Definition
 A course of action designed to help an organization respond effectively to a significant future event that may or may not happen. Informally called **"Plan B"**.
@@ -169,7 +169,7 @@ An analysis that predicts consequences of business function disruption and gathe
 
 ---
 
-## 5. Best Practices for Disaster Recovery
+## Best Practices for Disaster Recovery
 
 - **Offsite backup storage** — Use the cloud as a safe, always-available off-site backup location
 - **Record IT infrastructure changes** — Keeps the contingency plan aligned with current systems

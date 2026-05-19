@@ -2,9 +2,9 @@
 
 These three terms are often incorrectly used interchangeably.
 
-- Data – Simple facts available in large volumes. In cybersecurity, examples include IP addresses or logs. Raw data alone is of limited utility.
-- Information – Produced when data is collated to provide a useful output. Example: a series of logs showing a spike in suspicious activity.
-- Intelligence – Comes from the processing and analysis of information, used to inform decision-making. Example: collated log data contextualised with prior incident reports, allowing a mitigation strategy to be developed.
+- Data: Simple facts available in large volumes. In cybersecurity, examples include IP addresses or logs. Raw data alone is of limited utility.
+- Information: Produced when data is collated to provide a useful output. Example: a series of logs showing a spike in suspicious activity.
+- Intelligence: Comes from the processing and analysis of information, used to inform decision-making. Example: collated log data contextualised with prior incident reports, allowing a mitigation strategy to be developed.
 
 The pipeline is: Collection → Processing → Analysis → Intelligence
 

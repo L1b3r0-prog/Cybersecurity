@@ -1,5 +1,11 @@
 # CSIT302 Cybersecurity – Network Segmentation Notes
+What is network segmentation
+- Act/practice of splitting computer network into subnetworks with each being its own network segment
+- Network must be segmented, isolated and mechanisms to mitigate intrusions to be provided
 
+Reasons
+- Performance: High bandwidth applications
+- Security: Users shouldn't be able to talk direcetly to database
 ---
 
 ## Defence-in-Depth Approach
