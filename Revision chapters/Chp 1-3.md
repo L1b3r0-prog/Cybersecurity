@@ -23,7 +23,12 @@ Organizations dispose of obsolete devices via bidding, recyclers or dumping in s
 
 ---
 
-### Social Media — Identity Theft
+## Social Media
+Currently the best place to mine data concerning specific targets
+- Data related to companies user is working at
+- Details about family members, residence and contact info
+
+### Identity Theft
 - Easy to create fake accounts bearing another person's identity
 - Uses victim's picture and up-to-date details
 - Account impersonates high-level org officials to request:
@@ -34,7 +39,8 @@ Organizations dispose of obsolete devices via bidding, recyclers or dumping in s
 ---
 
 ### Social Engineering
-> ⚠️ Company can't completely protect itself — beyond the protection of security tools
+> ⚠️ Company can't completely protect itself — beyond the protection of security tools (exploiting human nature)
+> Humans are sympathetic, trusting of friends, show-offs and obedient to higher authorities making them open to attacks through manipulation of information
 
 #### 6 Levers of Social Engineering
 
@@ -65,6 +71,11 @@ Organizations dispose of obsolete devices via bidding, recyclers or dumping in s
 - **Spear Phishing:** specifically targeted at particular end users
   - Performs background checks on targets
   - Success rate: Normal phishing **3%** vs Spear phishing **70%**
+
+### Water holing
+- Strat where attacker guesses or observes websites group often (org, industry or region) uses and infects one or more with malware
+- Attacker may only attack users coming from specific IPa
+- Looks for specific information
 
 #### Baiting
 - Exploits greed/curiosity of targets

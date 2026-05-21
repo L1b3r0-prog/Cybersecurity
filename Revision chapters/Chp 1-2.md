@@ -5,6 +5,11 @@ Chp 1-2
 - **Detection:** how to handle security incidents
 - **Response:** how to rapidly respond to them
 
+Most companies have an IR review but don't constantly review to incorporate lessons learned from previous incidents
+
+![IR Process Diagram](images/IR_Process.png)
+
+
 At point 7, IR process will:
 - Take over the incident case
 - Document every single step of the process

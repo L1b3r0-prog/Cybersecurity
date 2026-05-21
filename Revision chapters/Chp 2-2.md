@@ -78,6 +78,14 @@ Uses raw IP packets to determine network information
 | safe | General scan — less likely to alarm admins |
 | vuln | Find vulnerabilities on target |
 
+### Nmap practice
+Steps:
+- Find target host via Host only scan
+- Detect OS version of target system
+- Find open ports and their current software versions
+- Find vulns using --script vuln option
+- Find details of vuln in CVE websites
+
 ---
 
 ## NIDS vs HIDS
