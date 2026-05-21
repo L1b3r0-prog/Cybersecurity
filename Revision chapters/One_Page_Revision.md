@@ -1,4 +1,7 @@
+══════════════════════════════════════════════════════
+
 Chp 1-1
+
 ══════════════════════════════════════════════════════
 
 ## Goals of Cybersecurity
@@ -143,7 +146,9 @@ Continuously expanding as orgs allow working flexibility
 7. **Execute and recover**
 
 ══════════════════════════════════════════════════════
+
 Chp 1-2
+
 ══════════════════════════════════════════════════════
 
 ## Incident Response (IR) Process
@@ -357,7 +362,9 @@ Scanning tools used to find exploitable loopholes:
 - Dynamic code obfuscation bypasses signature-based AV and firewalls
 
 ══════════════════════════════════════════════════════
+
 WannaCry
+
 ══════════════════════════════════════════════════════
 
 ## Overview
@@ -409,7 +416,9 @@ across networks without user interaction (worm-like behaviour).
 | Targeted Extensions | .der, .pfx, .key, .crt, .csr, .p12, .pem |
 
 ══════════════════════════════════════════════════════
+
 Chp 1-3
+
 ══════════════════════════════════════════════════════
 
 ## External Reconnaissance
@@ -564,7 +573,9 @@ Tools used to determine security mechanisms in place
 - Cloud is not the direct target — hacker compromises a user/system within the org
 
 ══════════════════════════════════════════════════════
+
 Chp 2-1
+
 ══════════════════════════════════════════════════════
 
 ## Steps for Compromising a System
@@ -757,7 +768,9 @@ Attack plan considers current threat landscape across 3 stages:
 - Crafts and distributes malware via email
 
 ══════════════════════════════════════════════════════
+
 Chp 2-2
+
 ══════════════════════════════════════════════════════
 
 ## Lateral Movement
