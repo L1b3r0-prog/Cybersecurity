@@ -1,12 +1,4 @@
 # CSIT302 Cybersecurity – Network Segmentation Notes
-What is network segmentation
-- Act/practice of splitting computer network into subnetworks with each being its own network segment
-- Network must be segmented, isolated and mechanisms to mitigate intrusions to be provided
-
-Reasons
-- Performance: High bandwidth applications
-- Security: Users shouldn't be able to talk direcetly to database
----
 
 ## Defence-in-Depth Approach
 
@@ -44,6 +36,14 @@ Endpoints
 
 ---
 
+## What is network segmentation
+- Act/practice of splitting computer network into subnetworks with each being its own network segment
+- Network must be segmented, isolated and mechanisms to mitigate intrusions to be provided
+
+Reasons
+- Performance: High bandwidth applications
+- Security: Users shouldn't be able to talk direcetly to database
+
 ## Physical Network Segmentation
 
 - Networks grow over time and security features are rarely revisited as expansion occurs
@@ -53,8 +53,6 @@ Endpoints
   - Provides good isolation but has limitations:
     - Efficiency – a switch may have 24 ports but only 2 hosts per network
     - Scalability – one switch may not handle all hosts
-
----
 
 ## Virtual Local Area Network (VLAN)
 
@@ -75,7 +73,9 @@ VLANs are logically (not physically) separated networks on the same switch. VLAN
 ### Mixed VLAN Approach
 - There is no single perfect solution for VLAN-based segmentation
 - In practice, a mixed VLAN approach combines multiple criteria (location + department + sensitivity level)
+
 ![Example Diagram](images/image7.png)
+
 - West Building VLAN (192.168.1.0/24) contains HR VLAN; Central Building VLAN contains Mission Critical Servers VLAN — all interconnected with controlled routing
 
 ### Best Practices for security of network segmentation
@@ -104,10 +104,12 @@ Used when employees work remotely (from home or while travelling). NAC evaluates
 - Compliant with mandatory security policies
 
 ### NAC Scenarios
-- Scenario 1: NAC validates the health state of a remote device and performs software-level segmentation — allowing the device to communicate only with predefined on-premises resources
+- Scenario 1: NAC validates the health state of a remote device and performs software-level segmentation by allowing the device to communicate with predefined on-premises resources
+
 ![Scenario 1 Diagram](images/image8.png)
 
-- Scenario 2: All remote users are isolated in a dedicated VLAN, with a firewall between that VLAN and the corporate network — restricts the type of access remote users have
+- Scenario 2: All remote users are isolated in a dedicated VLAN, with a firewall between that VLAN and the corporate network, this is to restrict the type of access remote users have
+
 ![Scenario 2 Diagram](images/image9.png)
 
 ### Quarantine Network
@@ -128,24 +130,6 @@ A VPN (Virtual Private Network) establishes a secure (encrypted) traffic channel
 - Each branch office has specific firewall rules — the remote office only accesses certain segments of HQ, not the entire network
 - The "need to know" principle should be enforced: only grant access to what is strictly necessary
   - Example: If the East Branch Office has no need to access the HR VLAN, that access should be blocked
-
----
-
-## Virtual Network Segmentation
-
-Security must be embedded even in virtual networks managed by a hypervisor (e.g. VirtualBox, VMware).
-
-### Key Concepts
-- Virtual networks are isolated within the virtual switch — traffic from one virtual network is not visible to another
-- Each virtual network has its own subnet; VMs within it communicate freely but cannot traverse to other virtual networks
-- For communication between virtual networks, a router with multiple virtual network adapters is required (can be a VM with routing enabled)
-- Virtual extensions at the switch level allow packet inspection before forwarding — beneficial for overall security
-
-### Virtual Switch Security Capabilities
-- MAC address spoofing (ARP spoofing) prevention – blocks malicious traffic from spoofed MAC addresses
-- DHCP guard – prevents VMs from acting as a DHCP server
-- Router guard – prevents VMs from sending router advertisement/redirection messages
-- Port ACL (Access Control List)** – configure specific access control based on MAC or IP addresses
 
 ---
 

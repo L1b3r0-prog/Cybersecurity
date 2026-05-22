@@ -23,6 +23,12 @@ In cybersecurity, threat intelligence specifically refers to Cyber Threat Intell
 
 ## Areas Where Cyber Threat Intelligence Can Be Used
 
+There are areas where information that is obtained from cyber threat intelligence can be used:
+- Profiling motivations
+- Analyzing attacker tactics
+- Analyzing techniques (of attacks)
+- Assessing operations
+
 ### Profiling Motivations
 Detection can be improved by learning more about adversaries. 
 
@@ -68,6 +74,34 @@ Each level differs in the nature and format of the material conveyed, its intend
 
 ### Tactical Threat Intelligence
 - Covers TTPs used by threat actors; IOCs (Indicators of Compromise)** are the main deliverable
+- Useful for updating signature-based defence systems and for proactive measures like threat hunting
+- Particularly valuable for Network Operations Centers (NOCs)
+- IOCs supplied in machine-readable formats; TTPs in human-readable formats requiring human action
+
+### Strategic Threat Intelligence
+- Informs senior decision makers of broader changes in the threat landscape
+
+---
+
+## Levels of Cyber Threat Intelligence
+
+Each level differs in the nature and format of the material conveyed, its intended audience, and its application.
+
+| Level | Focus | Audience | Format |
+|---|---|---|---|
+| Strategic | High-level, changing risk landscape | Senior decision makers | Plain language, business risk focus, less frequent |
+| Tactical | TTPs (Tactics, Techniques, Procedures) + IOCs | Network defenders (NOCs) | Combination of machine-readable (IOCs) and human-readable (TTPs) |
+| Operational | Specific impending attacks | Network defenders | Large volume, machine and human readable, real-time |
+| Technical | Indicators of specific malware | Technical analysts | Low-level, machine-readable |
+
+### Operational Threat Intelligence
+- Collects data and information to respond to a threat as it is in progress
+- Provides real-time alerts to help security teams understand attack scope
+- Relates to details of potential impending operations against an organisation
+- Example: chatter from cyber activists discussing targets, or data leaked on dark web forums
+
+### Tactical Threat Intelligence
+- Covers TTPs used by threat actors; **IOCs (Indicators of Compromise)** are the main deliverable
 - Useful for updating signature-based defence systems and for proactive measures like threat hunting
 - Particularly valuable for Network Operations Centers (NOCs)
 - IOCs supplied in machine-readable formats; TTPs in human-readable formats requiring human action

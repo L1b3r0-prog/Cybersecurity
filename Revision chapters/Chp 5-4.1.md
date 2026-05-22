@@ -1,7 +1,5 @@
 # CSIT302 Cybersecurity — Security Policy & Vulnerability Management Notes
 
----
-
 ## What is a Security Policy?
 
 According to NIST, a security policy is:
@@ -38,6 +36,31 @@ According to NIST, a security policy is:
 Policy → Procedure / Standard → Guidelines / Best Practices
   (High Enforcement, Less Technical) ←→ (Low Enforcement, More Technical)
 ```
+
+Policy
+- Basis of everything and set high level expectation. It will also be used to guide decisions and achieve outcomes
+- For all participants so it can't be too technical
+- Must be enforced by proper authority
+
+Procedure
+- Doc that has procedural steps that outline how something must be done
+
+Standard
+- Doc establishes tech requirements that must be followed
+  - Everyone must compy with certain standard that were previously established
+- Must provide enough tech details to give accurate and detailed explanation of requirements to the relevant personals (sec engineers or sec management officers)
+
+Guidelines
+- Optional but can also be additional recommended guidance
+  - Each company has freedom to define whether the guidelines are optional or needed
+- Guidelines must be aligned with policy and standard docs
+  - Usually written to give more specific details with practical examples such as best practices
+- Can be used to guide someone who has substantial knowledge of info tech but not specialized on cybersecurity domain
+
+Best practices
+- Implemented by entire company or some departments
+- Can be established per role
+- Can be part of guidelines
 
 | Document | Description |
 |---|---|

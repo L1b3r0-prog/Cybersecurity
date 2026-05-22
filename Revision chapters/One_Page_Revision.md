@@ -2098,17 +2098,623 @@ Chp 5-1
 
 ══════════════════════════════════════════════════════
 
+# CSIT302 Cybersecurity – Network Segmentation Notes
+
+## Defence-in-Depth Approach
+
+A layered security strategy that ensures multiple layers of protection exist, each with its own security controls. Sensors in each layer alert administrators to suspicious activity. 
+
+The purpose is to break the attack kill chain before an attack is fully executed.
+
+### Three Sections of Implementation
+
+Infrastructure and Services
+- Attackers can target an organisation's infrastructure and services
+- All services must be enumerated to identify possible attack vectors:
+  - Identify which assets the organisation has
+  - Specify potential attackers and possible attack techniques
+- Add security controls (e.g. patch management, server protection, network isolation, backups)
+- Two forms of infrastructure: On-premises and IaaS (Infrastructure as a Service)
+- In hybrid environments (on-premises + IaaS), threat modelling and implementation of security controls must be considered if the org is leveraging their services using IaaS
+- Goal: reduce vulnerability count and severity, reduce exposure time and increase difficulty and cost of exploitation
+
+Documents in Transit
+- "Documents" refers to any type of data
+- Data is most vulnerable when moving between locations
+- When in transit, it must be protected by encryption whether in public or internal networks
+- Additional controls include Activity Monitoring, Access Control, and Data Protection (layered around data)
+- The entire end-to-end communication path must be considered to identify threats and ways to mitigate them
+
+Endpoints
+- An endpoint is any device that can consume data — can be mobile or IoT devices
+- Threat modelling must be performed to uncover all attack vectors and plan mitigation efforts accordingly
+- Countermeasures include:
+  - Separation of corporate and personal data/apps (isolation)
+  - Use of TPM (Trusted Platform Module) hardware protection
+  - OS hardening
+  - Storage encryption
+
+---
+
+## What is network segmentation
+- Act/practice of splitting computer network into subnetworks with each being its own network segment
+- Network must be segmented, isolated and mechanisms to mitigate intrusions to be provided
+
+Reasons
+- Performance: High bandwidth applications
+- Security: Users shouldn't be able to talk direcetly to database
+
+## Physical Network Segmentation
+
+- Networks grow over time and security features are rarely revisited as expansion occurs
+- The first step is understanding the logical distribution of resources according to company needs
+- Establishing a physical network segmentation:
+  - No data flows between physically segmented networks unless connected via a switch or router
+  - Provides good isolation but has limitations:
+    - Efficiency – a switch may have 24 ports but only 2 hosts per network
+    - Scalability – one switch may not handle all hosts
+
+## Virtual Local Area Network (VLAN)
+
+VLANs are logically (not physically) separated networks on the same switch. VLAN 1 cannot communicate with VLAN 2 without a router.
+
+### VLAN Based on Department (Small-to-Medium Organisations)
+- Resources are grouped by department (Finance, HR, Operations, etc.)
+- Isolates resources per department
+- Advantage: Simple isolation per business unit
+- Disadvantage (Limitation): Cross-VLAN access is needed when departments share common resources (e.g. a file server), requiring multiple rules, different access conditions, and higher maintenance — large networks typically avoid this approach
+
+### VLAN Based on Other Aspects
+- Business objectives – VLANs created where resources are based on common business objectives
+- Level of sensitivity – VLANs based on risk level (high, medium, low), requires up-to-date risk assessment
+- Location – organise resources by geographic location (suited to large organisations)
+- Security zones – combined with other approaches for specific purposes (e.g. one zone for partner-accessed servers)
+
+### Mixed VLAN Approach
+- There is no single perfect solution for VLAN-based segmentation
+- In practice, a mixed VLAN approach combines multiple criteria (location + department + sensitivity level)
+
+![Example Diagram](images/image7.png)
+
+- West Building VLAN (192.168.1.0/24) contains HR VLAN; Central Building VLAN contains Mission Critical Servers VLAN — all interconnected with controlled routing
+
+### Best Practices for security of network segmentation
+- Use SSH to manage switches and routers
+- Restrict access to the management interface
+- Disable unused ports
+- Use security capabilities to prevent MAC flooding attacks
+- Use port-level security (e.g. DHCP snooping)
+- Keep switch and router firmware/OS up to date
+
+---
+
+## Network Access Control (NAC)
+
+NAC is a security approach that unifies:
+- Endpoint security technology (antivirus, host intrusion prevention, vulnerability assessment)
+- User/system authentication
+- Network security enforcement
+
+Used when employees work remotely (from home or while travelling). NAC evaluates the remote system before granting access to the corporate network.
+
+### Evaluation Criteria for Remote Systems
+- Has the latest patches applied
+- Antivirus is enabled
+- Personal firewall is enabled
+- Compliant with mandatory security policies
+
+### NAC Scenarios
+- Scenario 1: NAC validates the health state of a remote device and performs software-level segmentation by allowing the device to communicate with predefined on-premises resources
+
+![Scenario 1 Diagram](images/image8.png)
+
+- Scenario 2: All remote users are isolated in a dedicated VLAN, with a firewall between that VLAN and the corporate network, this is to restrict the type of access remote users have
+
+![Scenario 2 Diagram](images/image9.png)
+
+### Quarantine Network
+- Computers that don't meet minimum requirements are placed in an isolated quarantine network
+- The quarantine network provides remediation services that scan and fix the device before granting corporate network access
+
+---
+
+## Site-to-Site VPN
+
+A VPN (Virtual Private Network) establishes a secure (encrypted) traffic channel between two remote sites. Commonly used by organisations with branch offices or remote locations.
+
+- Typically uses IPSec protocol; some software VPNs use TLS
+- IPSec: secure network protocol that authenticates and encrypts data packets for secure communication over IP networks
+- Encryption is the default but not mandatory — in transport mode, traffic data is not encrypted
+
+### Site-to-Site VPN Design
+- Each branch office has specific firewall rules — the remote office only accesses certain segments of HQ, not the entire network
+- The "need to know" principle should be enforced: only grant access to what is strictly necessary
+  - Example: If the East Branch Office has no need to access the HR VLAN, that access should be blocked
+
+---
+
+## Case Study: Amazon AWS (Hybrid Cloud)
+
+AWS provides security capabilities across infrastructure and network. Relevant to hybrid cloud environments (on-premises + cloud):
+
+- **Network firewalls** built into Amazon VPC; **WAF (Web Application Firewall)** in AWS WAF for creating private networks and controlling access
+- **Customer-controlled TLS encryption** in transit across all services
+- **Private/dedicated connectivity** options from on-premises environments to AWS
+- **Automatic encryption** of all traffic on AWS global and regional networks between AWS secured facilities
+
+In a hybrid environment, organisations must apply threat modelling and security controls across both their on-premises infrastructure and their IaaS components.
+
 ══════════════════════════════════════════════════════
 
 Chp 5-2
 
 ══════════════════════════════════════════════════════
 
+## Data vs Information vs Intelligence
+
+These three terms are often incorrectly used interchangeably.
+
+- Data: Simple facts available in large volumes. In cybersecurity, examples include IP addresses or logs. Raw data alone is of limited utility.
+- Information: Produced when data is collated to provide a useful output. Example: a series of logs showing a spike in suspicious activity.
+- Intelligence: Comes from the processing and analysis of information, used to inform decision-making. Example: collated log data contextualised with prior incident reports, allowing a mitigation strategy to be developed.
+
+The pipeline is: Collection → Processing → Analysis → Intelligence
+
+---
+
+## Introduction to Threat Intelligence
+In cybersecurity, threat intelligence specifically refers to Cyber Threat Intelligence (CTI).
+
+### Why CTI Matters
+- Brings more meaningful results from collected data, revealing actions not detectable by traditional sensors
+- Enables a proactive approach against both known and unknown threats
+- Key principle: The targeted attacks need the targeted defense!
+- Ensures organisations can prevent, detect, and respond to realistic, contemporary attacks
+
+---
+
+## Areas Where Cyber Threat Intelligence Can Be Used
+
+There are areas where information that is obtained from cyber threat intelligence can be used:
+- Profiling motivations
+- Analyzing attacker tactics
+- Analyzing techniques (of attacks)
+- Assessing operations
+
+### Profiling Motivations
+Detection can be improved by learning more about adversaries. 
+
+The three main attacker motivations are:
+
+- Cybercrime – Primary motivation is financial gain.
+- Hacktivism – Broader motivation; ranges from political expression to support for a particular cause.
+- Cyber espionage / State-sponsored – Growing number of cases as part of larger state-sponsored campaigns.
+
+> Key question to ask: **Which type of attacker is most likely to target our organisation?**
+
+Threat intelligence helps scope data based on the adversary. For example, a financial institution should obtain intelligence from adversaries actively attacking the financial industry.
+
+Without an intelligence-led approach, organisations will either defend against too little (because they don't understand the threats) or try to defend against everything — an unsustainable approach that can impair operations.
+
+### Analysing Attacker Tactics
+Understanding attacker methodologies, tools, and strategies.
+
+### Analysing Techniques (of Attacks)
+Identifying indicators of specific malware.
+
+### Assessing Operations
+Assessing an organisation's ability to determine future cyber threats.
+
+---
+
+## Levels of Cyber Threat Intelligence
+
+Each level differs in the nature and format of the material conveyed, its intended audience, and its application.
+
+| Level | Focus | Audience | Format |
+|---|---|---|---|
+| Strategic | High-level, changing risk landscape | Senior decision makers | Plain language, business risk focus, less frequent |
+| Tactical | TTPs (Tactics, Techniques, Procedures) + IOCs | Network defenders (NOCs) | Combination of machine-readable (IOCs) and human-readable (TTPs) |
+| Operational | Specific impending attacks | Network defenders | Large volume, machine and human readable, real-time |
+| Technical | Indicators of specific malware | Technical analysts | Low-level, machine-readable |
+
+### Operational Threat Intelligence
+- Collects data and information to respond to a threat as it is in progress
+- Provides real-time alerts to help security teams understand attack scope
+- Relates to details of potential impending operations against an organisation
+- Example: chatter from cyber activists discussing targets, or data leaked on dark web forums
+
+### Tactical Threat Intelligence
+- Covers TTPs used by threat actors; IOCs (Indicators of Compromise)** are the main deliverable
+- Useful for updating signature-based defence systems and for proactive measures like threat hunting
+- Particularly valuable for Network Operations Centers (NOCs)
+- IOCs supplied in machine-readable formats; TTPs in human-readable formats requiring human action
+
+### Strategic Threat Intelligence
+- Informs senior decision makers of broader changes in the threat landscape
+
+---
+
+## Levels of Cyber Threat Intelligence
+
+Each level differs in the nature and format of the material conveyed, its intended audience, and its application.
+
+| Level | Focus | Audience | Format |
+|---|---|---|---|
+| Strategic | High-level, changing risk landscape | Senior decision makers | Plain language, business risk focus, less frequent |
+| Tactical | TTPs (Tactics, Techniques, Procedures) + IOCs | Network defenders (NOCs) | Combination of machine-readable (IOCs) and human-readable (TTPs) |
+| Operational | Specific impending attacks | Network defenders | Large volume, machine and human readable, real-time |
+| Technical | Indicators of specific malware | Technical analysts | Low-level, machine-readable |
+
+### Operational Threat Intelligence
+- Collects data and information to respond to a threat as it is in progress
+- Provides real-time alerts to help security teams understand attack scope
+- Relates to details of potential impending operations against an organisation
+- Example: chatter from cyber activists discussing targets, or data leaked on dark web forums
+
+### Tactical Threat Intelligence
+- Covers TTPs used by threat actors; **IOCs (Indicators of Compromise)** are the main deliverable
+- Useful for updating signature-based defence systems and for proactive measures like threat hunting
+- Particularly valuable for Network Operations Centers (NOCs)
+- IOCs supplied in machine-readable formats; TTPs in human-readable formats requiring human action
+
+### Strategic Threat Intelligence
+- Informs senior decision makers of broader changes in the threat landscape
+
+---
+
+## Microsoft Threat Intelligence (Example)
+
+Microsoft consumes threat intelligence through:
+- Microsoft Threat Intelligence Center, aggregating data from:
+  - Honeypots, malicious IP addresses, botnets, and malware detonation feeds
+  - Third-party sources (threat intelligence feeds)
+  - Human-based observation and intelligence collection
+- Intelligence from consumption of their own services
+- Intelligence feeds generated by Microsoft and third parties
+
+---
+
+## Open Source Tools for Threat Intelligence (Tactical)
+
+- **Quick IP validation:** https://fraudguard.io/
+  - Returns geolocation, threat type, risk level, and discovery date for a given IP
+  - Example: IP `220.227.71.226` returned risk level 5, threat type `honeypot_tracker`, located in Mumbai, India
+- **Malware inspection:** https://vms.drweb.com/
+- **Threat intelligence exchange:** https://otx.alienvault.com/
+  - Provides Indicators of Compromise (IOCs) including file hashes, URLs, and domain information
+
+---
+
+## Leveraging Threat Intelligence to Investigate Suspicious Activity
+
+### The Challenge of Alert Volume
+- An average large organisation processes ~17,000 malware alerts per week (Microsoft *Lean on the Machine* report)
+- On average it takes **99 days** to discover a security breach
+- Overload leads to random prioritisation or ignoring alerts entirely
+
+### Threat Intelligence Assisting Incident Response
+- The Blue Team (focused on defence) collaborates with the incident response team by providing the right data to find the **root cause** of an issue
+
+### Alert Triage
+Alert triage is the process of determining the most important threat that must be alerted. Failing or delaying this leads to a domino effect — if triage fails, the operation fails. Alert triage typically occurs at the Network Operations Center (NOC).
+
+### Key Questions at the End of a Threat Intelligence Investigation
+- Which systems were compromised?
+- Where did the attack start?
+- Which user account was used to start the attack?
+- Did it move laterally? If so, which systems were involved?
+- Did it escalate privilege? If so, which privileged account was compromised?
+- Did it try to communicate with command and control (C2)? If successful:
+  - Did it download anything from C2?
+  - Did it send anything to C2?
+- Did it try to clear evidence? Was it successful?
+
+---
+
+## Investigating an Incident
+
+### Scoping the Issue
+Scoping is the process of determining whether a given incident is security-related. Not every incident is security-related — it is vital to scope before beginning a full investigation, as symptoms may initially appear security-related but turn out to be non-security issues.
+
+Scoping guidelines:
+- Example: users reporting slow systems → conduct basic performance troubleshooting first, not a full security investigation
+- Determine the frequency of the issue during scoping
+- If the issue is not currently occurring, configure the environment to collect data when reproducible
+- Document all steps and provide an accurate action plan
+
+---
+
+## Key Artifacts
+
+More data does not mean a better investigation. Data collection should focus on vital and relevant artifacts from the target system. Too much data can distract from the root cause.
+
+### Key Artifacts in a Windows System
+Stored in the registry key, retrievable via PowerShell (e.g., `Get-ItemProperty`):
+- Location (time zone) of the machine
+- Networks the machine visited
+- USB usage history
+- Malicious software configured to start at Windows startup
+
+For live investigations, traffic captures and process dumps can also be collected.
+
+### Security Events That Can Be Captured
+- Audit log was cleared
+- Logon success or failure
+- A registry value was modified
+- Unauthorised access attempt to an object (file system) — can identify who made the change
+- A new process was created — malware/ransomware often spawn `cmd.exe` processes
+- A scheduled task was enabled or updated
+
+User account events:
+- Account enabled, created, or locked out
+- Password reset
+- Denied remote access
+
+Policy events:
+- Log policy changed
+- Domain policy changed
+- Changes in security-enabled global or local group
+
+Firewall events:
+- A change was made to the Windows Firewall exception list
+
+---
+
+## Case Study: On-Premises Compromised System
+
+### Attack Vector: Phishing Email
+1. Victim received a phishing email with an embedded image containing a hyperlink
+2. Victim clicked the image, saw a briefly opening/disappearing window
+3. Victim ignored the email
+
+### Detection
+- Days later, IT sent an automated report flagging that the victim's machine had accessed a suspicious site
+- Victim submitted the email as evidence
+
+### Investigation Steps
+- The linked URL was checked against threat intelligence tools — **3/65 engines flagged it as malware** (BitDefender, Fortinet, Sophos AV all flagged it as malicious)
+- Event logs were reviewed and revealed three key malicious processes:
+  - **`mimikatz.exe`** – Used to perform a **pass-the-hash attack**
+  - **`PsExec.exe`** – Used to perform **privilege escalation**
+  - **`procdump.exe`** – Used to **dump credentials**
+- A log also showed **the audit log was cleared** (Event ID 1102), hiding how privilege escalation was achieved
+
+### Summary
+- Attack chain: phishing email → hyperlink → download malicious package → extract tools (mimikatz, procdump, psexec)
+- Because the computer was not part of the domain, only **local credentials** were compromised
+
+---
+
+## Case Study: Compromised System in a Hybrid Cloud
+
+### Setup
+- Compromised system is on-premises; company uses a cloud-based monitoring system (Azure Security Center)
+- Same attack vector: phishing email → clicked hyperlink → compromised
+
+### Key Difference
+- An **active sensor** (Azure Security Center) monitored the system and immediately triggered an alert to SecOps
+- Users don't wait days to find out — the response is **faster and more accurate**
+
+### Four Events Recorded (Azure Security Center)
+| Event | Severity |
+|---|---|
+| Antimalware Action Taken | Low |
+| Suspicious process name detected | Medium |
+| Suspicious Process Execution Activity Detected | Medium |
+| Suspicious process executed | **High** |
+
+- Although antimalware captured the initial malware, the attacker continued and succeeded
+- The high-severity event corresponded to **mimikatz** running under an admin account (`EMSAdmin`), confirming privilege escalation was achieved
+
+### Managing Alert Volume
+In real-world scenarios, sensor and monitoring data is overwhelming. The platform used must:
+- Aggregate all logs and rationalise results
+- Provide strong **searching capabilities** to dig for important information
+- Offer efficient **visualising and searching interfaces**
+
+---
+
+## Lessons Learned
+
+After every incident closes:
+- **Document** each step taken during the investigation
+- **Identify** key aspects to review, improve, or fix
+- The Blue Team should produce an **extensive report** documenting lessons learned and how they will improve defence controls
+
+### Lessons from the Phishing Case Studies
+Attacks against user credentials are a growing threat. The solution is a combination of tasks:
+- **Reduce administrative accounts** — regular users should not be local admins on their own workstations
+- **Use multifactor authentication (MFA)** as widely as possible
+- **Restrict login rights** through security policy adjustments
+- **Periodically reset the Kerberos TGT (KRBTGT) account** — this account is exploited in a **golden ticket attack**
+
+---
+
 ══════════════════════════════════════════════════════
 
 Chp 5-3
 
 ══════════════════════════════════════════════════════
+
+# CSIT302 Cybersecurity — Day 5-3: Recovery Process
+
+---
+
+## Disaster Recovery Plan (DRP)
+
+### Definition
+A documented set of processes and procedures carried out to recover the IT infrastructure in the event of a disaster. Since disasters cannot be fully avoided, the goal is to plan ahead for recovery.
+
+### Types of Disasters
+- **Natural:** Blizzards, wildfires, hurricanes, volcanic eruptions, earthquakes, floods, lightning strikes
+- **Man-made:** Fires, cyber warfare, hacking, power surges, accidents
+
+### Objective
+Protect the continuity of business operations when IT operations have been partially or fully stopped.
+
+### Benefits
+- **Sense of security** — assures continued ability to function during a disaster
+- **Reduces recovery delays** — prevents uncoordinated, slow responses
+- **Reliable standby systems** — ensures standby systems are always prepared
+- **Standard test plan** — provides a benchmark for all business operations
+- **Faster decision-making** — minimizes time spent deciding during a crisis
+- **Mitigates legal liabilities** — reduces organizational exposure during disasters
+
+---
+
+### DRP Planning Process (8 Steps)
+
+1. **Forming a DR team** — All-inclusive team from all departments + top management; determines scope and oversees development
+2. **Performing risk assessment** — Identify natural/man-made risks; evaluate threats to sensitive files/servers; plan for worst-case scenario
+3. **Prioritizing processes and operations** — Identify critical needs per department; rank operations as *essential*, *important*, or *nonessential*; determine max time each department can operate without critical systems
+4. **Determining recovery strategies** — Cover all aspects: hardware, software, databases, communication channels, customer services, end-user systems; review third-party vendor agreements
+5. **Collecting data** — Document inventory forms, policies, communication links, contact details, hardware/software details, backup schedules and storage info
+6. **Creating the DRP** — Comprehensive, practical, standard format; step-by-step layout; easy to understand; includes its own review/update procedure
+7. **Testing the plan** — Use simulations, checklist tests, full-interruption tests, parallel tests; must be proven practical and effective
+8. **Obtaining approval** — Submit to top management; must be consistent with org policies and subject to annual reviews
+
+### Maintaining the Plan
+- Must be updated based on **need**, not just a rigid schedule (e.g., WannaCry spread to 150+ countries rapidly)
+- Set up an updating schedule that allows for ad hoc updates when needed
+
+### Challenges
+- **Lack of management approval** — Top management may not prioritize planning
+- **Incomplete RTO** — Difficult to create a cost-effective plan within the Recovery Time Objective
+- **Outdated plans** — Hard to keep current; outdated plans may fail against new threat vectors
+
+---
+
+## Recovery Objectives
+
+| Metric | Definition |
+|--------|------------|
+| **RTO** (Recovery Time Objective) | Maximum acceptable delay between service interruption and restoration |
+| **RPO** (Recovery Point Objective) | Maximum acceptable amount of time since the last data recovery point |
+
+### RTO vs. Cost Relationship
+Lower RTO (faster recovery) = higher cost and complexity. AWS disaster recovery strategies in ascending cost:
+
+| Strategy | RPO/RTO | Notes |
+|----------|---------|-------|
+| Backup & Restore | Hours | Lowest cost |
+| Pilot Light | 10s of minutes | Data live, services idle |
+| Warm Standby | Minutes | Partially running, business critical |
+| Multi-Site Active/Active | Real-time | Zero downtime, highest cost |
+
+---
+
+## Live Recovery
+
+### Why It's Needed
+Traditional recovery requires taking the system offline — but some systems cannot tolerate downtime (e.g., always-on services, structurally interdependent systems).
+
+### Two Methods
+
+1. **Install a clean system on top of the faulty one**
+   - Replaces the faulty system and its files entirely
+   - A new, clean system takes over
+
+2. **Use data recovery tools on a live system**
+   - Used when valuable data must be preserved in the existing system
+   - Tools update configurations and replace faulty files with recent backups
+   - Allows recovery without a complete system restore
+
+---
+
+## Contingency Plan
+
+### Definition
+A course of action designed to help an organization respond effectively to a significant future event that may or may not happen. Informally called **"Plan B"**.
+
+### Why It's Needed
+- Organizations face many risks (natural disasters to human error)
+- It is impossible to eliminate all risks
+
+### Sound Contingency Plan Requirements
+- Reliable execution plans and updating schedules
+- Integration with other business continuity plans
+- Defined recovery strategies and RTOs
+- Exercise, training, and updating tasks
+
+---
+
+### Five Steps of IT Contingency Planning
+
+#### Step 1: Develop the Contingency Planning Policy
+- Define objectives and assign responsibilities
+- Include all senior employees
+- Policy must cover: scope, resources, training needs, testing/maintenance schedules, backup schedules/locations, roles and responsibilities
+
+#### Step 2: Conduct Business Impact Analysis (BIA)
+An analysis that predicts consequences of business function disruption and gathers information to develop recovery strategies.
+
+**Three steps of BIA:**
+
+1. **Identify critical IT resources** — Resources supporting core processes (payroll, transactions, e-commerce); typically servers, networks, and communication channels
+2. **Identify disruption impacts** — Determine maximum allowable outage time per resource; balance cost of disruption vs. cost of recovery
+3. **Develop recovery priorities** — Prioritize which resources to restore first (usually communication channels and networks, but depends on org type)
+
+#### Step 3: Identify Preventive Controls
+- Mitigate BIA-uncovered impacts through measures that detect, deter, or reduce disruption
+- Implement only if feasible and cost-effective
+- Range from power interruption prevention to fire prevention
+
+#### Step 4: Develop Recovery Strategies
+
+**Backups**
+- Intervals should be short enough to capture reasonably recent data
+- Policies should cover: storage sites, naming conventions, rotation frequency, transmission methods
+- **Cloud backups:**
+  - *Advantages:* Lower cost (no hardware), high reliability/availability, scalable storage
+  - *Disadvantages:* Privacy and security concerns
+
+**Alternative Sites** (by readiness, ascending order)
+
+| Site Type | Description |
+|-----------|-------------|
+| Cold site | Supportive resources ready; requires IT equipment and telecom installation |
+| Warm site | Partially equipped; requires staffing to become operational |
+| Hot site | Adequately equipped and staffed; ready to continue IT operations |
+| Mirrored site | Exact replica of the main site |
+
+**Equipment Replacement Options**
+- **Vendor agreement** — Vendors notified to supply replacements after a disaster
+- **Equipment inventory** — Pre-purchased replacement equipment stored safely in advance
+- **Existing compatible equipment** — Borrowing from alternative sites
+
+#### Step 5: Plan Maintenance
+- Review at least **annually**; update and document all changes promptly
+- Must stay aligned with current risks, org structure, and policies
+
+---
+
+### Plan Testing, Training & Exercising
+
+**Testing focuses on:**
+- Speed of recovery from backups and alternative sites
+- Collaboration between recovery personnel
+- Performance of recovered systems at alternative sites
+- Ease of restoring normal operations
+- Conducted in worst-case scenario via classroom or functional exercises
+
+**Training:**
+- Theoretical training supplements practical exercises
+- Conducted at least annually
+
+**Exercising:**
+- **Classroom exercises** — Low cost; staff walked through recovery operations in class
+- **Functional exercises** — Higher cost; disaster is mimicked and staff respond practically
+
+---
+
+## Best Practices for Disaster Recovery
+
+- **Offsite backup storage** — Use the cloud as a safe, always-available off-site backup location
+- **Record IT infrastructure changes** — Keeps the contingency plan aligned with current systems
+- **Proactive system monitoring** — Detect disasters early to begin recovery sooner
+- **Fault-tolerant systems** — Implement RAID (Redundant Array of Independent Disks) for server redundancy; test backup integrity regularly
+- **Regular restore testing** — All IT staff should be fully knowledgeable about the restoration process
 
 ══════════════════════════════════════════════════════
 
