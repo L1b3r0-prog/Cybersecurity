@@ -149,16 +149,30 @@ Attacks **availability** of data by encrypting files and demanding payment for t
 ### Against Malicious Code Assuming User Identity
 - Limit objects accessible to a process run by the user
   - Reduce rights
-  - **Sandboxing** — virtual environment to contain malicious behaviour
+
+###
+- **Sandboxing** 
+  — virtual environment to contain malicious behaviour
 
 ### Restrict Domain Sharing
 - Prevent users in different protection domains from sharing programs or data
+- Programs to be protected should be placed at the lowest level of implementation of a multilevel security policy
 
 ---
 
 ## Detection Methods
+Normal behaviour is usually different from the activity profile of infected system
 
 | Method | How It Works | Strength | Weakness |
 |--------|-------------|----------|---------|
 | Behaviour monitoring | Monitors system for abnormal behaviour | Works for all viruses, detects before full infection | High sensitivity → many false alarms |
 | Signature scanning | Matches activity against known virus signature library | Simple and effective for known threats | Cannot detect new viruses or polymorphic viruses |
+
+Second gen scanners doesn't just use specific signatures as polymorphic viruses exists
+- User heuristics rules to search for probable malware instances
+- Integrity checks (checksum) can also be applied
+
+Third gen detects virus by behaviour
+- Attempts to interact inappropriately with certain system files could trigger detection
+
+Fourth gen uses a collect of antivirus techniques together

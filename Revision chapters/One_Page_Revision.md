@@ -1048,3 +1048,1070 @@ Attach malicious code → Access memory → Copy malicious DLL to memory → Exe
 - Precursor to Stuxnet — sophisticated worm
 - Data sent off in smaller chunks
 - Can exchange data with any **Bluetooth-enabled device**
+
+══════════════════════════════════════════════════════
+
+Chp 3-1
+
+══════════════════════════════════════════════════════
+
+## Malware Classification
+Malware is a program inserted into a system, usually covertly, with the intent of
+compromising **confidentiality, integrity or availability** of victim's data, applications or OS
+
+**Malware carries out:**
+- Nation-state cyberwar
+- Cybercrime
+- Fraud
+- Scam
+
+---
+
+## Types of Malware
+- Virus
+- Worms
+- Trojans
+- Spyware
+- Botnet Malware
+- Ransomware
+
+### Classification Categories
+
+| Category | Group A | Group B |
+|----------|---------|---------|
+| Needs host program | Viruses | Worms & Bots (standalone) |
+| Can replicate | Viruses & Worms | Trojans & Spam emails (cannot) |
+| Payload type | Corruption of files | Theft of service / Theft of info |
+
+---
+
+## Virus
+Piece of software that infects other programs or executable content by modifying them
+**Requires a host program or file to execute**
+
+### Main Components
+| Component | Description |
+|-----------|-------------|
+| Infection mechanism | How virus spreads/propagates (infection vector) |
+| Trigger | Event/condition that activates/deactivates payload (logic bomb) |
+| Payload | What virus does beyond spreading — damage or noticeable activity |
+
+### Virus Phases
+| Phase | Description |
+|-------|-------------|
+| Dormant | Idle, waiting for trigger |
+| Propagation | Places copy of itself into other programs or disk areas |
+| Triggering | Activated to perform intended function |
+| Execution | Function is performed |
+
+### Classification of Virus
+
+**By Target:**
+| Type | Description |
+|------|-------------|
+| Boot sector infector | Infects master boot record — spreads when system boots from infected disk |
+| File infector | Infects executable files |
+| Macro virus | Infects files with macro/scripting code interpreted by an application |
+| Multipartite virus | Infects files in multiple ways across multiple file types |
+
+**By Concealment Strategy:**
+| Type | Description |
+|------|-------------|
+| Stealth | Hides entire virus (not just payload) from antivirus detection |
+| Encrypted | Uses encryption to obscure content |
+| Polymorphic | Changes form each time it is inserted into another program |
+| Metamorphic | Higher order — changes form AND can be completely rewritten |
+
+---
+
+## Worms
+Self-propagating program that replicates across systems by arranging to execute itself immediately
+
+- Exploits software vulnerabilities in client/server programs
+- **Standalone — does not need a host program**
+
+### Replication Methods
+| Method | Description |
+|--------|-------------|
+| Email/IM | Emails copy of itself or sends as attachment |
+| File sharing | Copies itself or infects files on removable media (e.g. USB) |
+| Remote execution | Executes copy on another system via remote facility or exploiting network service flaw |
+| Remote file transfer | Copies itself using remote file access/transfer services |
+| Remote login | Logs onto remote system as user and copies itself |
+
+### Worm vs Virus Propagation
+| | Worm | Virus |
+|-|------|-------|
+| Speed | Faster — parallelizes propagation | Slower — requires user action to trigger each propagation |
+| Host needed | No | Yes |
+
+---
+
+## Trojan Horse
+Software that appears to perform a desirable function but secretly performs malicious functions
+**Does not self-replicate**
+
+### Concealment Methods
+- Renames itself to the name of a valid system file
+- Can be encrypted and polymorphic
+- Installs itself in different ways to escape detection
+
+---
+
+## Backdoor
+Secret entry point allowing access without going through normal security procedures
+
+- Originally used by programmers to debug and test programs
+- Can be exploited for unauthorized access
+- Usually implemented as a **network service listening on a non-standard port**
+- Attacker connects and issues commands to be run on the compromised system
+- Difficult to implement OS controls for backdoors in applications
+
+---
+
+## Ransomware
+Attacks **availability** of data by encrypting files and demanding payment for the decryption key
+
+---
+
+## Extras
+
+### Potentially Unwanted Programs (PUP)
+- Code that is part of a useful program but collects user data without consent
+- Sits in legal grey area but considered malware from a cybersecurity standpoint
+
+### Logic Bomb
+- Performs malicious action when a specific external event occurs
+- **Triggers include:**
+  - Presence or absence of certain files/devices
+  - Particular day/date
+  - Particular software version or config
+  - Particular user running the app
+- Once triggered: may alter/delete data, cause machine damage
+
+---
+
+## Countermeasures for Malware
+
+### How Malware Works
+- Acts as both **data and instructions**
+  - Inserts code (instructions) into another program
+  - Executes itself where the instructions are treated as executable
+- **Protection:** treat all programs as data by default
+  - Only allow execution after trusted certifying authority verifies them
+
+### Against Malicious Code Assuming User Identity
+- Limit objects accessible to a process run by the user
+  - Reduce rights
+
+###
+- **Sandboxing** 
+  — virtual environment to contain malicious behaviour
+
+### Restrict Domain Sharing
+- Prevent users in different protection domains from sharing programs or data
+- Programs to be protected should be placed at the lowest level of implementation of a multilevel security policy
+
+---
+
+## Detection Methods
+Normal behaviour is usually different from the activity profile of infected system
+
+| Method | How It Works | Strength | Weakness |
+|--------|-------------|----------|---------|
+| Behaviour monitoring | Monitors system for abnormal behaviour | Works for all viruses, detects before full infection | High sensitivity → many false alarms |
+| Signature scanning | Matches activity against known virus signature library | Simple and effective for known threats | Cannot detect new viruses or polymorphic viruses |
+
+Second gen scanners doesn't just use specific signatures as polymorphic viruses exists
+- User heuristics rules to search for probable malware instances
+- Integrity checks (checksum) can also be applied
+
+Third gen detects virus by behaviour
+- Attempts to interact inappropriately with certain system files could trigger detection
+
+Fourth gen uses a collect of antivirus techniques together
+
+══════════════════════════════════════════════════════
+
+Chp 3-2
+
+══════════════════════════════════════════════════════
+
+## General Data Protection Regulation (GDPR)
+
+### Who makes GDPR
+Created by the **European Union (EU)**
+
+### Purpose
+**Purpose:** Outline enforceable and uniform requirements for protecting personal data
+of individuals across the EU
+
+---
+
+### What is Personal Data?
+- Any data relating to an **identified or identifiable natural person** (directly or indirectly)
+- Includes: name, ID number, location data, online identifier, physical/physiological/
+  genetic/mental/economic/cultural/social identity factors
+- Applies to processing of personal data whether automated or not
+  (collecting, storing, organizing, etc.)
+
+The exception is that it doesn't apply to the processing of personal data
+- By a natural person in the course of a purely personal or household activity
+---
+
+### Territorial Scope
+Based on two criteria:
+1. **Establishment** of controller or processor in the EU
+2. **Being active on the EU market** — offering services/goods or monitoring behaviour
+
+**Key Terms:**
+| Term | Definition |
+|------|------------|
+| Controller | Party who determines purposes and means of processing personal data |
+| Processor | Party who processes personal data on behalf of the controller |
+
+> Any person, public authority, agency or other body can be either one
+
+---
+
+### 7 Key Principles of GDPR
+
+| # | Principle | Description |
+|---|-----------|-------------|
+| 1 | Lawfulness, Fairness & Transparency | Don't process data unlawfully; data subject must reasonably expect processing; be clear and honest about data use |
+| 2 | Purpose Limitation | Collect data for specified, explicit, legitimate purposes only; don't use for incompatible purposes |
+| 3 | Data Minimization | Only collect data adequate, relevant and limited to what is necessary |
+| 4 | Accuracy | Data must be accurate, up to date; erase/rectify inaccurate data without delay |
+| 5 | Storage Limitation | Don't keep data longer than necessary; exceptions for public interest/research/statistics |
+| 6 | Integrity & Confidentiality | Implement appropriate security measures; protect against unauthorized processing and accidental loss |
+| 7 | Accountability | Controller must demonstrate compliance; maintain appropriate measures and records |
+
+**Principle 6 — Examples:**
+- Technical measure: 2FA
+- Organisational measure: Staff training, security policy
+
+**Principle 7 — Compliance measures may include:**
+- Adopting policies and procedures
+- Taking 'data protection by design and default' approach
+- Implementing appropriate security measures
+- Ongoing review and updates
+
+---
+
+## Australian Privacy Act 1988
+Principal Australian legislation protecting handling of personal information
+
+Covers: collection, use, storage and disclosure of personal information in
+**federal public sector and private sector**
+
+### What It Governs
+- Collection, use and disclosure of personal information
+- Organisation/agency governance and accountability
+- Integrity and correction of personal information
+- Right of individuals to access their personal information
+
+---
+
+### 13 Australian Privacy Principles (APPs)
+
+#### Part 1 — Consideration of Personal Information Privacy
+| APP | Name | Description |
+|-----|------|-------------|
+| APP 1 | Open and transparent management | Entity must have clearly expressed, up-to-date policy on personal information management |
+| APP 2 | Anonymity and pseudonymity | Individuals must have option of not identifying themselves or using a pseudonym |
+
+#### Part 2 — Collection of Personal Information
+| APP | Name | Description |
+|-----|------|-------------|
+| APP 3 | Collection of solicited personal information | Only collect what is reasonably necessary; must use lawful and fair means |
+| APP 4 | Dealing with unsolicited personal information | If entity receives unsolicited info it could not have collected under APP3, must destroy or de-identify it |
+| APP 5 | Notification of collection | Must notify individual that their information has been collected |
+
+> ⚠️ Note: APP4 is about unsolicited information — if the entity receives data it
+> shouldn't have collected, it must destroy or de-identify it
+
+#### Part 3 — Dealing with Personal Information
+| APP | Name | Description |
+|-----|------|-------------|
+| APP 6 | Use or disclosure | Specifies how collected personal information can be used or disclosed |
+| APP 7 | Direct marketing | Personal info must not be used for direct marketing except in special cases |
+| APP 8 | Cross-border disclosure | Requirements for disclosing personal info to other countries |
+| APP 9 | Government related identifiers | Conditions for adopting, using and disclosing government identifiers |
+
+#### Part 4 — Integrity of Personal Information
+| APP | Name | Description |
+|-----|------|-------------|
+| APP 10 | Quality | Entity must ensure accuracy, completeness and timeliness of data |
+| APP 11 | Security | Entity must protect info from misuse, loss or unauthorized access; destroy needless info |
+
+#### Part 5 — Access to and Correction of Personal Information
+| APP | Name | Description |
+|-----|------|-------------|
+| APP 12 | Access | Individual can access their personal information except in special circumstances |
+| APP 13 | Correction | Entity must take steps to correct personal information when needed |
+
+══════════════════════════════════════════════════════
+
+Chp 4-1
+
+══════════════════════════════════════════════════════
+
+# Digital Forensics
+
+## Overview
+
+Forensics science is the application of scientific methods to collect, preserve and analyse evidence related to legal cases.
+
+Digital forensics is the application of computer science and investigative procedures for a legal purpose involving the analysis of digital evidence.
+
+### NIST 800-86 Definition
+
+Digital forensics is the application of science to the identification, collection, examination and analysis of data while preserving the integrity of the information and maintaining a strict chain of custody for the data.
+
+---
+
+### Investigating Digital Devices Includes
+
+- Collecting data securely
+- Examining suspect data to determine details such as origin and content
+- Presenting digital information to courts
+- Applying laws to digital device practice
+
+### Forensic Tools & Techniques Are Also Useful For
+
+- Operational troubleshooting
+- Log monitoring
+- Data recovery
+- Data acquisition
+- Due diligence/ regulatory compliance
+
+---
+
+### Data Forensics vs Data Recovery
+
+![DF vs DR Diagram](images/image5.png)
+
+Forensics is about legal validity and chain of custody while Recovery is about getting data back regardless of legal use.
+
+---
+
+## Investigations Triad for Computer Security
+
+Forensics investigators often work as part of a team to secure orgs pc and network.
+
+![Forensics Diagram](images/image6.png)
+
+The triad is made up of the following functions:
+
+### 1. Vulnerability/Threat Assessment & Risk Management
+
+- Test and verify integrity of stand-alone workstations and network servers which covers the physical security of systems and security of OS and applications
+- Conduct authorized penetration test for vulns
+
+### 2. Network Intrusion Detection & Incident Response
+
+- Detect intruder attacks and response to the attack
+- Collect evidence for litigation against intruders
+
+### 3. Digital Investigations
+
+- Manage investigations and conduct forensics analysis of systems suspected of containing evidence related to an incident or a crime
+
+---
+
+## History of Digital Forensics
+
+- **Mid-1980s** — Simple forensics tools such as Xtree Gold recognised file types and retrieved lost/deleted files
+- **Later** — Norton DiskEdit became the preferred tool for recovering deleted files
+- **Subsequently** — IACIS introduced training software for digital forensics exam, IRS created search-warrant programs
+- **Later** — ASR Data Expert Witness became the first commercial GUI software for Macintosh
+- **Eventually** — More tools emerged such as ILook (IRS Criminal Investigation Division) and AcessData FTK (popular in law enforcement & civilian market)
+
+---
+
+## Successful Digital Forensics Investigator
+
+- Develop and maintain contact with computing, network and investigative professionals
+- Join computer user groups in both public and private sectors
+  - Computer Technology Investigators Network (CTIN) meets to discuss problems with digital forensics examiners encounter
+- Consulting outside experts when needed
+
+### Extras
+
+1. **Maintain professional conduct** — ethics, morals, standards of behaviour; maintaining objectivity and confidentiality
+2. **Stay current** — attend training on latest changes in hardware, software, networking and forensics tools
+3. **Always be prepared** — have a contingency plan including alt software, hardware and investigative approaches
+
+---
+
+## Business Measures to Reduce Litigation Risk
+
+- Publishing and maintaining policies that employees can find easy to read and follow
+- Displaying warning barriers which informs end users that the organization reserves the right to inspect computer systems and network traffic at will
+  - Can be used to show the line of authority for an investigation which can
+    - Show the user's expectation of privacy
+    - Avoid the issue of authority to inspect
+
+### On Internal Warning Banners (depending on the type of org)
+
+- Access to this system and network is restricted
+- Use of this system and network is for official business only
+- Systems and networks are subject to monitoring at any time by the owner
+- etc.
+
+### Authorised Requesters
+
+Business are advised to specify an authorized requester who has the power to initiate investigation such as:
+
+- Corporate security investigations
+- Corporate ethics office
+- Corporate equal employment opportunity office
+- Internal auditing
+- General counsel or legal department
+
+### Three Situations Common in Private-Sector
+
+1. Abuse or misuse of computing assets
+2. E-mail abuse
+3. Internet abuse
+
+### BYOD Considerations
+
+Addressing the issue of personal devices accessing the company network — BYOD is a major challenge in company security, digital investigations and compliance with regulations including company policies.
+
+---
+
+## Securing Evidence — The 4 Phases of Preparation
+
+1. Taking a systematic approach
+2. Accessing the case
+3. Planning the investigation
+4. Securing the evidence
+
+---
+
+### Phase 1 — Taking a Systematic Approach
+
+The first phase can apply standard system analysis steps which includes:
+
+- Making an initial assessment about the type of case you're investigating
+- Determining a prelim design or approach to the case
+- Creating a detailed checklist
+- Determining the resources you need
+- Obtaining and copying the evidence drive
+- Identifying the risks
+- Mitigating or minimizing the risks
+- Testing the design
+- Analyzing and recovering the digital evidence
+- Completing the case report
+- Critiqing the case
+
+---
+
+### Phase 2 — Accessing the Case
+
+The second phase should take into consideration of the following aspects:
+
+- Nature of the case
+- Type of evidence available
+- Location of evidence
+
+---
+
+### Phase 3 — Planning the Investigation
+
+The third phase begins with a basic investigation plan which should include:
+
+- Acquiring the evidence
+- Completing an evidence form and establishing a chain of custody
+- Transporting the evidence to a computer forensics lab
+- Securing evidence in an approved secure container
+- Preparing forensics workstation
+- Retrieve the evidence from the secure container
+- Make a forensic copy of the evidence
+- Return the evidence to the secure container
+- Process the copied evidence with computer forensics tools
+
+### Evidence Custody Form — Required Fields
+
+- Case number
+- Investigating organization
+- Investigator
+- Nature of case
+- Location evidence was obtained
+- Description of evidence
+- Vendor name
+- Model number or serial number
+- Evidence recovered by (name)
+- Date and time
+- Evidence placed in locker
+- Item # / Evidence processed by / Disposition of evidence / Date / Time
+- Page number
+
+---
+
+### Phase 4 — Securing the Evidence
+
+- Use evidence bags to secure and catalog evidence
+- Use computer safe products when collecting computer evidence
+  - Antistatic bags
+  - Antistatic pads
+- Use well padded containers
+- Use evidence tape to seal all openings
+  - CD drive bays
+  - Insertion slots for power supply electrical cords and USB cables
+- Write initials on tape to prove that evidence has not yet been tampered with
+- Consider computer specific temperature and humidity ranges
+  - Ensure safe environment for transporting and storing it until a secure evidence container is available
+
+══════════════════════════════════════════════════════
+
+Chp 4-2
+
+══════════════════════════════════════════════════════
+# Differential Privacy (DP) Notes
+
+# What is the Purpose of Differential Privacy?
+
+## Main Purpose
+Enable useful analysis of sensitive data for reasearch, policy and market analysis while ensuring an adversary can't determine whether any single individual data influenced the output
+
+---
+
+## Problem DP Tries to Solve
+
+Organizations often collect sensitive data such as:
+- Health records
+- Census information
+- Social media activity
+- Telecommunication data
+
+The challenge is:
+
+> How can we use the data for research, statistics, or business insights without exposing personal information?
+
+---
+
+## Why Simpler Approaches Fail
+
+**Approach 1 — Encryption:**
+Blocks access entirely, but data must be decrypted before analysis can happen, 
+which reintroduces privacy risks at the point of use.
+
+**Approach 2 — Anonymization:**
+Removing names and identifiers is not enough. Quasi-identifiers like ZIP code, 
+birth date, and sex can be cross-referenced with public datasets to re-identify 
+individuals.
+
+- **Sweeney (1997):** Linked anonymized medical records with public voter rolls 
+using ZIP, birth date and sex — successfully re-identifying individuals.
+- **Netflix Prize (2006):** Anonymized movie ratings were matched against public 
+IMDb reviews, deanonymizing users and leading to cancellation of the second 
+Netflix prize.
+
+**Approach 3 — Mediated Access:**
+A curator filters queries on behalf of analysts. Still insufficient because exact 
+aggregate answers, returned repeatedly, can leak individual information through 
+careful query construction — which leads directly to what DP solves.
+
+---
+
+## Goals of Differential Privacy
+DP aims to:
+- Protect individual privacy
+- Prevent re-identification attacks
+- Allow safe statistical analysis
+- Enable data sharing securely
+
+---
+
+## Main idea of designing Differential Privacy schemes
+The core principle is to add carefully calibrated random noise to the output so that the presence of absence of any single record can't be detected
+
+---
+
+## How it works
+Instead of returning the exact answer to a query, small amount of random noise is added to the result
+
+Random enough to hide any single data contributed to the answer, but small enough that the result is still statistically useful
+
+Amount of noise is calibrated based on sensitivity of the query
+
+---
+
+## Consequences of returning answer wihout noise
+Adversary can issue series of slightly different queries and compare the results.
+
+They can query the dataset and if the answers are different, they can infer the data
+
+Overly accurate estimates across many queries is "non-private" due to cumulative effect of exact answers letting an attacker reconstruct what individual records contain
+
+══════════════════════════════════════════════════════
+
+Chp 4-3
+
+══════════════════════════════════════════════════════
+
+## Traditional Defender Mindset vs New Mindset
+
+### Traditional Defender Mindset
+- Focuses mainly on monitoring:
+  - High-profile users
+  - Administrators
+  - Privileged accounts
+- Relies heavily on:
+  - Signature detection
+  - Static rules
+  - Manual investigation
+- Problems:
+  - High number of false positives
+  - Limited visibility across regular users
+  - Difficulty detecting modern attacks that stay hidden
+
+### New Defender Mindset
+- Focuses on everything
+  - All users
+  - All devices
+  - All accounts
+- Relies on
+  - Data correlation
+  - Profiling
+  - Behaviour analytics
+  - Anomaly detection
+  - Activity evaluation
+  - Machine learning
+- Detects
+  - Lateral movement
+  - Dormant attackers
+  - Privilege escalation
+  - Insider threats
+
+This Shift is due to how attackers start
+- First by compromising regular users first
+- Staying hidden in the network
+- Moving laterally
+- Escalating privileges
+
+Traditional mindeset focuses on privileged accounts only which would miss this entirely
+
+---
+
+# Indicator of Compromise (IoC)
+
+## Definition
+An Indicator of Compromise (IoC) is an artifact that is observed on a network or in an OS that indicates a computer intrusion with high confidence
+
+Examples:
+- Malicious IP addresses
+- Suspicious files
+- Unusual traffic patterns
+- Abnormal user activity
+
+### Purpose of IoCs
+- Detect attacks early
+- Identify attacker behavior
+- Prevent or limit damage
+- Improve incident response speed
+
+---
+
+# Major IoCs
+
+## 1. Unusual Outbound Traffic
+- Systems communicating with unknown external servers
+- May indicate:
+  - Command-and-Control (C&C) communication
+  - Data exfiltration
+
+### Example
+- A workstation suddenly sends encrypted traffic to unknown overseas IPs.
+
+---
+
+## 2. Anomalies in Privileged User Activity
+Changes in:
+- Login times
+- Systems accessed
+- Volume of data accessed
+- User behavior patterns
+
+### Example
+- Admin account accessing systems at 3 AM unexpectedly.
+
+---
+
+## 3. Geographical Irregularities
+Login attempts or access from unusual countries or locations.
+
+### Example
+- Employee account logs in from Singapore and then Russia shortly after.
+
+---
+
+## 4. Login Red Flags
+Indicators include:
+- Multiple failed logins
+- After-hours access
+- Sudden successful login after repeated failures
+
+### Possible Meaning
+- Brute force attack
+- Credential stuffing
+- Unauthorized access attempt
+
+---
+
+## 5. Sudden Increase in Database Read Volume
+Large amounts of database reads may indicate:
+- Data harvesting
+- Data exfiltration attempts
+
+### Example
+- Massive download of customer records.
+
+---
+
+## 6. Large Number of Requests for the Same File
+Repeated requests may indicate:
+- Exploit attempts
+- Vulnerability scanning
+
+### Example
+- 500 requests to `join.php` from one IP address.
+
+---
+
+## 7. Mismatched Port-Application Traffic
+Applications using incorrect ports suspiciously.
+
+### Example
+- DNS traffic running over port 80 instead of port 53.
+
+---
+
+## 8. DNS Request Anomalies
+Indicators:
+- Sudden spike in DNS requests
+- Repeated requests to suspicious domains
+
+### Possible Meaning
+- Malware beaconing
+- C&C communication
+
+---
+
+## 9. Suspicious Registry or System File Changes
+Attackers modify:
+- Registry entries
+- Critical system files
+
+### Goal
+- Persistence
+- Privilege escalation
+
+---
+
+## 10. Mobile Device Profile Changes
+Unexpected configuration profiles may indicate compromise.
+
+### Example
+- Malicious profile installed through phishing.
+
+---
+
+## 11. Wrong Placement of Data
+Sensitive data stored in unusual locations.
+
+### Example
+- Files hidden inside recycle bin folders.
+
+---
+
+## 12. Web Traffic with Unhuman Behavior
+Indicators:
+- Extremely high browsing activity
+- Automated browsing patterns
+
+### Example
+- 40 browser tabs opening automatically.
+
+---
+
+# Host-Based IDS (HIDS) vs Network-Based IDS (NIDS)
+
+## Host-Based IDS (HIDS)
+
+### Characteristics
+- Runs on individual hosts/devices
+- Monitors inbound and outbound packets from device only
+  - Will alert User/Admin if suspicious activity is detected
+- Takes and compares system snapshots for changes
+  - If critical system files were modified/deleted, alert is sent to admin
+
+### Example Use Cases
+- Critical servers
+- Mission-critical systems
+
+### Strength
+- Detects unauthorized file modifications
+
+## Network-Based IDS (NIDS)
+
+### Characteristics
+- Monitors network traffic for the network segment it is installed in
+- Positioned at strategic point or points in the network
+- Detects:
+  - Known attacks
+  - Suspicious traffic patterns
+
+### Important Placement Areas
+- DMZ
+- Core network
+- Wireless networks
+- Virtualization networks
+
+### Strength
+- Monitors multiple systems simultaneously
+
+## HIDS vs NIDS
+| Feature | HIDS | NIDS |
+|---|---|---|
+| Location | Installed on individual hosts | Installed on network segments |
+| Monitors | Single device activity | Entire network traffic |
+| Focus | File changes, logs, host behavior | Packets and network traffic |
+| Scope | Local system only | Multiple devices |
+| Advantage | Deep visibility into host | Broad network visibility |
+| Limitation | Only protects one device | Cannot see encrypted host activity well |
+| Best use cases | Critical servers, mission-critical systems | DMZ, core network, wireless networks, virtualization networks |
+| Key strength | Detects unauthorized file modifications | Monitors multiple systems simultaneously |
+
+
+---
+
+# Signature-Based IDS vs Behavior-Based IDS
+
+## Signature-Based IDS
+
+### How It Works
+Queries database of previous attack's signature (footprint) such as 
+- Byte sequences in network traffic
+- Known malicious instruction sequences
+
+Then it decides whether an alert must be triggered
+
+Used for identifying known threats
+
+Database however requires constant update in order to have the latest version
+
+---
+
+## Behavior-Based IDS (Anomaly-Based IDS)
+
+### How It Works
+Creates a baseline model of trustworthy activity through machine learning and then comparing new behaviour against the model
+
+Introduced to detect unknown attacks due to rapid dev of malware
+
+May suffer from false positives due to prev unknown legit activity which may be classified as malicious
+
+### Two major anomaly-based IDS
+- User and Entity Behaviour Analytics (UEBA)
+- Network Traffic Analysis (NTA)
+
+## SBIDS vs BBIDS
+
+| Feature | Signature-Based IDS | Behavior-Based IDS |
+|---|---|---|
+| Detection Method | Known attack signatures | Detects abnormal behavior |
+| Best At | Known threats | Unknown threats |
+| Requires Updates | Yes | Baseline training |
+| False Positives | Lower | Higher |
+| Can Detect Zero-Day Attacks | No | Yes |
+
+---
+
+## Intrusion Detection System (IDS)
+
+### Purpose
+- Detect suspicious activity
+- Alert administrators
+
+### Does NOT
+- Automatically stop attacks
+
+### Main Role
+- Monitoring and alerting
+
+---
+
+# IDS and IPS
+
+## Intrusion Detection System (IDS)
+Monitors network or system for malicious activity or policy violations and triggers and alert
+
+Requires help from humans for automated system to interpret results and decide whether to act
+
+## Intrusion Prevention System (IPS)
+
+Uses the same concept of IDS but prevents intrusion by taking corrective action
+
+Primarily focused on identifying possible incidents, logging info on them and reporting attempts
+
+Orgs can use for other purposes
+- Identifying problems with security policies
+- Documenting existing threats
+- Deterring individuals from violating security policies
+
+### Actions IPS Can Take
+- Block traffic
+- Drop malicious packets
+- Terminate sessions
+- Prevent exploitation attempts
+
+### Types
+- HIPS (Host-based IPS)
+- NIPS (Network-based IPS)
+
+## IDS vs IPS
+
+| Feature | IDS | IPS |
+|---|---|---|
+| Main Function | Detects and monitors intrusions | Detects and prevents intrusions |
+| Action Taken | Generates alerts only | Automatically takes corrective action |
+| Response | Needs human or automated system to act | Acts on its own |
+| Risk | Less disruptive | May accidentally block valid traffic |
+| Types | HIDS, NIDS | HIPS, NIPS |
+| Detection Modes | Signature-based, Behavior-based | Rule-based, Anomaly-based |
+| **Shared** | Both analyze traffic and compare it to known threats ||
+
+---
+
+# Anomaly-Based IPS
+
+An extension of anomaly based IDS that:
+1. Learns normal traffic behavior
+2. Detects deviations
+3. Automatically takes action
+
+Depends on what the IPS categorizes as anomalous
+
+Takes samples of network traffic at random times, performs comparison with baseline
+- If samples fits outside of baselines, alert and action is taken
+
+User behavior analytics plays an important role
+
+---
+
+# Behavior Analytics
+
+## Definition
+Behavior analytics studies user and system behavior to identify suspicious activities.
+
+Looks at patterns of human behaviours and then applying algorithms and statistical analytics to detect meaningful anomalies from those patterns
+- This is to find anomalies that indicate potential threats
+
+Instead of tracking devices or security events, it tracks system's users
+
+---
+
+# User and Entity Behavior Analytics (UEBA)
+
+## Definition
+UEBA tracks normal behavior of:
+- Users
+- Devices
+- Systems
+- Applications
+
+Then detects anomalies.
+
+## Example
+Normal behavior:
+- User downloads 10 MB daily
+
+Anomaly:
+- Same user suddenly downloads 5 GB
+
+Result:
+- UEBA triggers alert
+
+## Advantages of UEBA
+- Early attack detection
+- Detects insider threats
+- Detects compromised accounts
+- Uses machine learning and analytics
+
+Placement of UEBA is according to company's needs and vendor's requirements
+
+---
+
+# Importance of Behavior Analytics
+
+Stuff like core business, critical data and key assets are located on-premises
+
+## Why Organizations Use It
+Attackers often infiltrate on-premises networks by:
+- Staying hidden
+- Moving laterally
+- Escalate privileges quietly
+- Maintain command and control until mission is executed
+
+Behavior analytics helps detect:
+- Suspicious patterns
+- Abnormal actions
+- Reconnaissance activities
+
+---
+
+# Example: Credit Card Fraud Analogy
+
+Behavior analytics works similarly to bank fraud detection systems.
+
+### Example
+If your credit card:
+- Is used in a new country
+- Spends unusually high amounts
+- Behaves differently
+
+The bank:
+- Detects anomaly
+- Flags transaction
+- Contacts user
+
+Cybersecurity systems do the same with user activity.
+
+---
+
+# Key Takeaways
+
+- Modern defense requires monitoring all users and devices
+- IoCs help identify compromise early
+- HIDS protects hosts while NIDS protects network segments
+- Signature-based systems detect known threats
+- Behavior-based systems detect unknown threats
+- IDS detects attacks while IPS blocks attacks
+- Behavior analytics and UEBA are critical against modern stealth attacks
+
+══════════════════════════════════════════════════════
+
+Chp 5-1
+
+══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+
+Chp 5-2
+
+══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+
+Chp 5-3
+
+══════════════════════════════════════════════════════
+
+══════════════════════════════════════════════════════
+
+Chp 5-4
+
+══════════════════════════════════════════════════════

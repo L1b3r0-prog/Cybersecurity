@@ -2,8 +2,11 @@ Chp 3-2
 ══════════════════════════════════════════════════════
 
 ## General Data Protection Regulation (GDPR)
+
+### Who makes GDPR
 Created by the **European Union (EU)**
 
+### Purpose
 **Purpose:** Outline enforceable and uniform requirements for protecting personal data
 of individuals across the EU
 
@@ -16,6 +19,8 @@ of individuals across the EU
 - Applies to processing of personal data whether automated or not
   (collecting, storing, organizing, etc.)
 
+The exception is that it doesn't apply to the processing of personal data
+- By a natural person in the course of a purely personal or household activity
 ---
 
 ### Territorial Scope

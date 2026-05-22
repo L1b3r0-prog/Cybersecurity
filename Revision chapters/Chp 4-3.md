@@ -14,37 +14,31 @@
   - Limited visibility across regular users
   - Difficulty detecting modern attacks that stay hidden
 
----
-
 ### New Defender Mindset
-Modern security monitoring focuses on **all users and devices**, not just privileged accounts.
-
-### Key Concepts
-- Profile normal user behavior
-- Monitor:
-  - All accounts
+- Focuses on everything
+  - All users
   - All devices
-  - Multiple locations
-- Detect:
+  - All accounts
+- Relies on
+  - Data correlation
+  - Profiling
+  - Behaviour analytics
+  - Anomaly detection
+  - Activity evaluation
+  - Machine learning
+- Detects
   - Lateral movement
   - Dormant attackers
   - Privilege escalation
   - Insider threats
 
-### Modern Detection Techniques
-- Data correlation
-- Profiling
-- Behavior analytics
-- Anomaly detection
-- Activity evaluation
-- Machine learning
+This Shift is due to how attackers start
+- First by compromising regular users first
+- Staying hidden in the network
+- Moving laterally
+- Escalating privileges
 
-### Why This Is Important
-Attackers often:
-1. Compromise regular users first
-2. Stay hidden in the network
-3. Move laterally
-4. Escalate privileges later
+Traditional mindeset focuses on privileged accounts only which would miss this entirely
 
 ---
 
@@ -191,26 +185,14 @@ Indicators:
 
 # Host-Based IDS (HIDS) vs Network-Based IDS (NIDS)
 
-| Feature | HIDS | NIDS |
-|---|---|---|
-| Location | Installed on individual hosts | Installed on network segments |
-| Monitors | Single device activity | Entire network traffic |
-| Focus | File changes, logs, host behavior | Packets and network traffic |
-| Scope | Local system only | Multiple devices |
-| Advantage | Deep visibility into host | Broad network visibility |
-| Limitation | Only protects one device | Cannot see encrypted host activity well |
-
----
-
 ## Host-Based IDS (HIDS)
 
 ### Characteristics
-- Runs directly on hosts/devices
-- Monitors:
-  - System files
-  - Logs
-  - Inbound/outbound traffic
-- Compares system snapshots for changes
+- Runs on individual hosts/devices
+- Monitors inbound and outbound packets from device only
+  - Will alert User/Admin if suspicious activity is detected
+- Takes and compares system snapshots for changes
+  - If critical system files were modified/deleted, alert is sent to admin
 
 ### Example Use Cases
 - Critical servers
@@ -219,13 +201,11 @@ Indicators:
 ### Strength
 - Detects unauthorized file modifications
 
----
-
 ## Network-Based IDS (NIDS)
 
 ### Characteristics
-- Monitors network traffic
-- Positioned strategically in the network
+- Monitors network traffic for the network segment it is installed in
+- Positioned at strategic point or points in the network
 - Detects:
   - Known attacks
   - Suspicious traffic patterns
@@ -239,9 +219,52 @@ Indicators:
 ### Strength
 - Monitors multiple systems simultaneously
 
+## HIDS vs NIDS
+| Feature | HIDS | NIDS |
+|---|---|---|
+| Location | Installed on individual hosts | Installed on network segments |
+| Monitors | Single device activity | Entire network traffic |
+| Focus | File changes, logs, host behavior | Packets and network traffic |
+| Scope | Local system only | Multiple devices |
+| Advantage | Deep visibility into host | Broad network visibility |
+| Limitation | Only protects one device | Cannot see encrypted host activity well |
+| Best use cases | Critical servers, mission-critical systems | DMZ, core network, wireless networks, virtualization networks |
+| Key strength | Detects unauthorized file modifications | Monitors multiple systems simultaneously |
+
+
 ---
 
 # Signature-Based IDS vs Behavior-Based IDS
+
+## Signature-Based IDS
+
+### How It Works
+Queries database of previous attack's signature (footprint) such as 
+- Byte sequences in network traffic
+- Known malicious instruction sequences
+
+Then it decides whether an alert must be triggered
+
+Used for identifying known threats
+
+Database however requires constant update in order to have the latest version
+
+---
+
+## Behavior-Based IDS (Anomaly-Based IDS)
+
+### How It Works
+Creates a baseline model of trustworthy activity through machine learning and then comparing new behaviour against the model
+
+Introduced to detect unknown attacks due to rapid dev of malware
+
+May suffer from false positives due to prev unknown legit activity which may be classified as malicious
+
+### Two major anomaly-based IDS
+- User and Entity Behaviour Analytics (UEBA)
+- Network Traffic Analysis (NTA)
+
+## SBIDS vs BBIDS
 
 | Feature | Signature-Based IDS | Behavior-Based IDS |
 |---|---|---|
@@ -250,56 +273,6 @@ Indicators:
 | Requires Updates | Yes | Baseline training |
 | False Positives | Lower | Higher |
 | Can Detect Zero-Day Attacks | No | Yes |
-
----
-
-## Signature-Based IDS
-
-### How It Works
-- Compares activity against:
-  - Known malware signatures
-  - Known attack patterns
-
-### Advantages
-- Accurate for known threats
-- Fast detection
-
-### Disadvantages
-- Cannot detect unknown attacks
-- Requires constant updates
-
----
-
-## Behavior-Based IDS (Anomaly-Based IDS)
-
-### How It Works
-- Builds a baseline of normal behavior
-- Detects deviations from that baseline
-
-### Uses
-- Machine learning
-- Statistical analysis
-
-### Advantages
-- Detects:
-  - Zero-day attacks
-  - Unknown malware
-  - Insider threats
-
-### Disadvantages
-- Higher false positives
-- Requires learning period
-
----
-
-# IDS vs IPS
-
-| Feature | IDS | IPS |
-|---|---|---|
-| Main Function | Detects attacks | Detects and blocks attacks |
-| Action Taken | Generates alerts | Automatically prevents threats |
-| Traffic Position | Passive monitoring | Inline with traffic |
-| Risk | Less disruptive | May accidentally block valid traffic |
 
 ---
 
@@ -317,10 +290,23 @@ Indicators:
 
 ---
 
+# IDS and IPS
+
+## Intrusion Detection System (IDS)
+Monitors network or system for malicious activity or policy violations and triggers and alert
+
+Requires help from humans for automated system to interpret results and decide whether to act
+
 ## Intrusion Prevention System (IPS)
 
-### Purpose
-- Detect and prevent attacks
+Uses the same concept of IDS but prevents intrusion by taking corrective action
+
+Primarily focused on identifying possible incidents, logging info on them and reporting attempts
+
+Orgs can use for other purposes
+- Identifying problems with security policies
+- Documenting existing threats
+- Deterring individuals from violating security policies
 
 ### Actions IPS Can Take
 - Block traffic
@@ -332,41 +318,33 @@ Indicators:
 - HIPS (Host-based IPS)
 - NIPS (Network-based IPS)
 
+## IDS vs IPS
+
+| Feature | IDS | IPS |
+|---|---|---|
+| Main Function | Detects and monitors intrusions | Detects and prevents intrusions |
+| Action Taken | Generates alerts only | Automatically takes corrective action |
+| Response | Needs human or automated system to act | Acts on its own |
+| Risk | Less disruptive | May accidentally block valid traffic |
+| Types | HIDS, NIDS | HIPS, NIPS |
+| Detection Modes | Signature-based, Behavior-based | Rule-based, Anomaly-based |
+| **Shared** | Both analyze traffic and compare it to known threats ||
+
 ---
 
 # Anomaly-Based IPS
 
-## Definition
-An IPS that:
+An extension of anomaly based IDS that:
 1. Learns normal traffic behavior
 2. Detects deviations
 3. Automatically takes action
 
----
+Depends on what the IPS categorizes as anomalous
 
-## How It Works
-- Collects traffic samples
-- Builds behavior baseline
-- Compares future activity against baseline
+Takes samples of network traffic at random times, performs comparison with baseline
+- If samples fits outside of baselines, alert and action is taken
 
-### If Activity Is Abnormal
-- Generate alert
-- Block traffic
-- Trigger security response
-
----
-
-## Advantages
-- Detects unknown attacks
-- Detects insider threats
-- Identifies suspicious patterns early
-
----
-
-## Disadvantages
-- Higher false positives
-- Requires training period
-- Complex tuning
+User behavior analytics plays an important role
 
 ---
 
@@ -375,12 +353,10 @@ An IPS that:
 ## Definition
 Behavior analytics studies user and system behavior to identify suspicious activities.
 
-### Goal
-Detect:
-- Insider threats
-- Advanced Persistent Threats (APTs)
-- Financial fraud
-- Compromised accounts
+Looks at patterns of human behaviours and then applying algorithms and statistical analytics to detect meaningful anomalies from those patterns
+- This is to find anomalies that indicate potential threats
+
+Instead of tracking devices or security events, it tracks system's users
 
 ---
 
@@ -395,8 +371,6 @@ UEBA tracks normal behavior of:
 
 Then detects anomalies.
 
----
-
 ## Example
 Normal behavior:
 - User downloads 10 MB daily
@@ -407,23 +381,26 @@ Anomaly:
 Result:
 - UEBA triggers alert
 
----
-
 ## Advantages of UEBA
 - Early attack detection
 - Detects insider threats
 - Detects compromised accounts
 - Uses machine learning and analytics
 
+Placement of UEBA is according to company's needs and vendor's requirements
+
 ---
 
 # Importance of Behavior Analytics
 
+Stuff like core business, critical data and key assets are located on-premises
+
 ## Why Organizations Use It
-Attackers often:
-- Stay hidden
-- Move laterally
+Attackers often infiltrate on-premises networks by:
+- Staying hidden
+- Moving laterally
 - Escalate privileges quietly
+- Maintain command and control until mission is executed
 
 Behavior analytics helps detect:
 - Suspicious patterns
